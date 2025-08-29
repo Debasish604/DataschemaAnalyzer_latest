@@ -18,16 +18,24 @@ class AnalysisSession(db.Model):
             return {key: self._make_json_serializable(value) for key, value in obj.items()}
         elif isinstance(obj, list):
             return [self._make_json_serializable(item) for item in obj]
-        elif isinstance(obj, np.integer):
+        elif isinstance(obj, tuple):
+            return [self._make_json_serializable(item) for item in obj]
+        elif isinstance(obj, (np.integer, np.int64, np.int32)):
             return int(obj)
-        elif isinstance(obj, np.floating):
+        elif isinstance(obj, (np.floating, np.float64, np.float32)):
             return float(obj)
+        elif isinstance(obj, (np.bool_, bool)):
+            return bool(obj)
         elif isinstance(obj, np.ndarray):
             return obj.tolist()
         elif pd.isna(obj):
             return None
+        elif pd.isnull(obj):
+            return None
         elif hasattr(obj, 'isoformat'):  # datetime objects
             return obj.isoformat()
+        elif hasattr(obj, 'item'):  # numpy scalars
+            return obj.item()
         else:
             return obj
     
