@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Files - Data Analysis Tool{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i data-feather="upload"></i> Upload Database Files
+                </h4>
+                <p class="text-muted mb-0 mt-2">
+                    Upload multiple database files for intelligent analysis
+                </p>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <!-- Session Name -->
+                    <div class="mb-4">
+                        <label for="session_name" class="form-label">Analysis Session Name</label>
+                        <input type="text" class="form-control" id="session_name" name="session_name" 
+                               placeholder="Enter a name for this analysis session" required>
+                        <div class="form-text">Give your analysis session a descriptive name for easy identification</div>
+                    </div>
+
+                    <!-- File Upload Area -->
+                    <div class="mb-4">
+                        <label class="form-label">Select Files</label>
+                        <div class="upload-area border border-2 border-dashed rounded p-4 text-center" 
+                             id="uploadArea">
+                            <div class="upload-content">
+                                <i data-feather="upload-cloud" style="width: 48px; height: 48px;" class="text-muted mb-3"></i>
+                                <h5 class="text-muted">Drag and drop files here</h5>
+                                <p class="text-muted mb-3">or</p>
+                                <input type="file" class="form-control d-none" id="fileInput" name="files[]" 
+                                       multiple accept=".csv,.sql,.xls,.xlsx,.xml">
+                                <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+                                    <i data-feather="folder"></i> Browse Files
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            Supported formats: CSV, SQL, Excel (.xls/.xlsx), XML files. Maximum file size: 50MB each.
+                        </div>
+                    </div>
+
+                    <!-- Selected Files Display -->
+                    <div id="selectedFiles" class="mb-4" style="display: none;">
+                        <label class="form-label">Selected Files</label>
+                        <div id="filesList" class="border rounded p-3">
+                            <!-- Files will be displayed here -->
+                        </div>
+                    </div>
+
+                    <!-- Supported Formats Info -->
+                    <div class="alert alert-info" role="alert">
+                        <h6 class="alert-heading">
+                            <i data-feather="info"></i> Supported File Formats
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="mb-0">
+                                    <li><strong>CSV:</strong> Comma-separated values with auto-detection of delimiters</li>
+                                    <li><strong>SQL:</strong> CREATE TABLE and INSERT statements</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="mb-0">
+                                    <li><strong>Excel:</strong> .xls and .xlsx files with multiple sheet support</li>
+                                    <li><strong>XML:</strong> Structured XML data with auto-parsing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Options -->
+                    <div class="card bg-body-secondary mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i data-feather="settings"></i> Analysis Options
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="analyzeDataTypes" checked>
+                                        <label class="form-check-label" for="analyzeDataTypes">
+                                            Data Type Analysis
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="analyzePatterns" checked>
+                                        <label class="form-check-label" for="analyzePatterns">
+                                            Pattern Detection
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="analyzeRelationships" checked>
+                                        <label class="form-check-label" for="analyzeRelationships">
+                                            Relationship Analysis
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="analyzeOutliers" checked>
+                                        <label class="form-check-label" for="analyzeOutliers">
+                                            Outlier Detection
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
+                            <i data-feather="play"></i> Start Analysis
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Analysis Process Info -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="cpu"></i> What happens during analysis?
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i data-feather="search" class="text-primary"></i> Data Type Detection</h6>
+                        <ul class="small text-muted">
+                            <li>Automatic identification of IDs, names, dates, monetary values</li>
+                            <li>Pattern classification for better understanding</li>
+                            <li>Data quality assessment</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i data-feather="link-2" class="text-success"></i> Relationship Mapping</h6>
+                        <ul class="small text-muted">
+                            <li>Primary and foreign key identification</li>
+                            <li>Join strategy recommendations</li>
+                            <li>Table relationship visualization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-4">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h5>Analyzing your data...</h5>
+                <p class="text-muted mb-0">This may take a few moments depending on file size and complexity.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const selectedFiles = document.getElementById('selectedFiles');
+    const filesList = document.getElementById('filesList');
+    const submitBtn = document.getElementById('submitBtn');
+    const uploadForm = document.getElementById('uploadForm');
+    const loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
+
+    let selectedFilesArray = [];
+
+    // Drag and drop functionality
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.classList.add('border-primary');
+    });
+
+    uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('border-primary');
+    });
+
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('border-primary');
+        
+        const files = Array.from(e.dataTransfer.files);
+        handleFiles(files);
+    });
+
+    // File input change
+    fileInput.addEventListener('change', function() {
+        const files = Array.from(this.files);
+        handleFiles(files);
+    });
+
+    function handleFiles(files) {
+        const validExtensions = ['csv', 'sql', 'xls', 'xlsx', 'xml'];
+        const validFiles = files.filter(file => {
+            const extension = file.name.split('.').pop().toLowerCase();
+            return validExtensions.includes(extension);
+        });
+
+        if (validFiles.length === 0) {
+            alert('Please select valid files (CSV, SQL, Excel, or XML)');
+            return;
+        }
+
+        selectedFilesArray = validFiles;
+        displaySelectedFiles();
+        submitBtn.disabled = false;
+
+        // Update file input
+        const dt = new DataTransfer();
+        validFiles.forEach(file => dt.items.add(file));
+        fileInput.files = dt.files;
+    }
+
+    function displaySelectedFiles() {
+        if (selectedFilesArray.length === 0) {
+            selectedFiles.style.display = 'none';
+            return;
+        }
+
+        selectedFiles.style.display = 'block';
+        
+        let html = '';
+        selectedFilesArray.forEach((file, index) => {
+            const size = (file.size / 1024 / 1024).toFixed(2);
+            const extension = file.name.split('.').pop().toLowerCase();
+            
+            let icon = 'file';
+            let badgeClass = 'bg-secondary';
+            
+            switch(extension) {
+                case 'csv':
+                    icon = 'file-text';
+                    badgeClass = 'bg-success';
+                    break;
+                case 'sql':
+                    icon = 'database';
+                    badgeClass = 'bg-primary';
+                    break;
+                case 'xls':
+                case 'xlsx':
+                    icon = 'grid';
+                    badgeClass = 'bg-warning';
+                    break;
+                case 'xml':
+                    icon = 'code';
+                    badgeClass = 'bg-info';
+                    break;
+            }
+            
+            html += `
+                <div class="d-flex justify-content-between align-items-center p-2 border-bottom">
+                    <div class="d-flex align-items-center">
+                        <i data-feather="${icon}" class="me-2"></i>
+                        <div>
+                            <div class="fw-medium">${file.name}</div>
+                            <small class="text-muted">${size} MB</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="badge ${badgeClass} me-2">${extension.toUpperCase()}</span>
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile(${index})">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        filesList.innerHTML = html;
+        feather.replace();
+    }
+
+    window.removeFile = function(index) {
+        selectedFilesArray.splice(index, 1);
+        
+        // Update file input
+        const dt = new DataTransfer();
+        selectedFilesArray.forEach(file => dt.items.add(file));
+        fileInput.files = dt.files;
+        
+        displaySelectedFiles();
+        
+        if (selectedFilesArray.length === 0) {
+            submitBtn.disabled = true;
+        }
+    };
+
+    // Form submission
+    uploadForm.addEventListener('submit', function(e) {
+        if (selectedFilesArray.length === 0) {
+            e.preventDefault();
+            alert('Please select at least one file');
+            return;
+        }
+        
+        loadingModal.show();
+    });
+
+    feather.replace();
+});
+</script>
+{% endblock %}

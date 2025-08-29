@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Data Analysis Tool{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Hero Section -->
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="card-title h3">Intelligent Data Analysis Tool</h1>
+                        <p class="card-text">
+                            Upload multiple database files and get AI-powered insights about data types, 
+                            patterns, relationships, and potential optimizations.
+                        </p>
+                        <a href="{{ url_for('upload_files') }}" class="btn btn-light btn-lg">
+                            <i data-feather="upload"></i> Start Analysis
+                        </a>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <i data-feather="database" style="width: 80px; height: 80px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i data-feather="file-text" class="text-primary me-2"></i>
+                            <h5 class="card-title mb-0">Multiple File Formats</h5>
+                        </div>
+                        <p class="card-text">
+                            Support for CSV, SQL, Excel (.xls/.xlsx), and XML files with intelligent parsing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i data-feather="brain" class="text-success me-2"></i>
+                            <h5 class="card-title mb-0">Smart Data Type Detection</h5>
+                        </div>
+                        <p class="card-text">
+                            Automatically identify data types: IDs, names, dates, monetary values, and more.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i data-feather="trending-up" class="text-warning me-2"></i>
+                            <h5 class="card-title mb-0">Pattern Analysis</h5>
+                        </div>
+                        <p class="card-text">
+                            Detect outliers, sequences, correlations, and missing data patterns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i data-feather="link" class="text-info me-2"></i>
+                            <h5 class="card-title mb-0">Relationship Mapping</h5>
+                        </div>
+                        <p class="card-text">
+                            Identify primary/foreign keys and suggest optimal join strategies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Recent Sessions -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="clock"></i> Recent Analysis Sessions
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if recent_sessions %}
+                    {% for session in recent_sessions %}
+                        <div class="d-flex justify-content-between align-items-center mb-3 p-2 border rounded">
+                            <div>
+                                <h6 class="mb-1">{{ session.session_name }}</h6>
+                                <small class="text-muted">
+                                    {{ session.file_count }} files • 
+                                    {{ session.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                            <div class="btn-group-vertical btn-group-sm">
+                                <a href="{{ url_for('view_session', session_id=session.id) }}" 
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i data-feather="eye"></i>
+                                </a>
+                                <form method="POST" action="{{ url_for('delete_session', session_id=session.id) }}" 
+                                      style="display: inline;" 
+                                      onsubmit="return confirm('Are you sure you want to delete this session?')">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i data-feather="trash-2"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted text-center py-3">
+                        <i data-feather="inbox"></i><br>
+                        No recent sessions.<br>
+                        <a href="{{ url_for('upload_files') }}">Start your first analysis</a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="bar-chart-2"></i> Supported Formats
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6 mb-3">
+                        <div class="border rounded p-2">
+                            <i data-feather="file-text" class="text-success mb-1"></i>
+                            <div class="small">CSV</div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="border rounded p-2">
+                            <i data-feather="database" class="text-primary mb-1"></i>
+                            <div class="small">SQL</div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="border rounded p-2">
+                            <i data-feather="grid" class="text-warning mb-1"></i>
+                            <div class="small">Excel</div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="border rounded p-2">
+                            <i data-feather="code" class="text-info mb-1"></i>
+                            <div class="small">XML</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Getting Started Guide -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0">
+            <i data-feather="help-circle"></i> How It Works
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 text-center mb-3">
+                <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
+                     style="width: 60px; height: 60px;">
+                    <span class="text-white h4 mb-0">1</span>
+                </div>
+                <h6>Upload Files</h6>
+                <p class="small text-muted">Upload multiple database files in supported formats</p>
+            </div>
+            
+            <div class="col-md-3 text-center mb-3">
+                <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
+                     style="width: 60px; height: 60px;">
+                    <span class="text-white h4 mb-0">2</span>
+                </div>
+                <h6>Auto Analysis</h6>
+                <p class="small text-muted">AI analyzes data types, patterns, and relationships</p>
+            </div>
+            
+            <div class="col-md-3 text-center mb-3">
+                <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
+                     style="width: 60px; height: 60px;">
+                    <span class="text-white h4 mb-0">3</span>
+                </div>
+                <h6>View Insights</h6>
+                <p class="small text-muted">Review detailed analysis results and recommendations</p>
+            </div>
+            
+            <div class="col-md-3 text-center mb-3">
+                <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
+                     style="width: 60px; height: 60px;">
+                    <span class="text-white h4 mb-0">4</span>
+                </div>
+                <h6>Export Results</h6>
+                <p class="small text-muted">Download analysis reports in various formats</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    feather.replace();
+</script>
+{% endblock %}
