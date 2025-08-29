@@ -1,8 +1,11 @@
-from app import db
 from datetime import datetime
 import json
 import numpy as np
 import pandas as pd
+from flask_sqlalchemy import SQLAlchemy
+
+# Create db instance here
+db = SQLAlchemy()
 
 class AnalysisSession(db.Model):
     """Model to store analysis sessions and results"""
