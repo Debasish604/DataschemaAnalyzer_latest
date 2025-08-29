@@ -35,11 +35,11 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 # Initialize the app with the extension
 db.init_app(app)
 
+# Import models and routes after app setup
+import models
+import routes
+
 with app.app_context():
-    # Import models and routes
-    import models
-    import routes
-    
     # Create all database tables
     db.create_all()
 

@@ -32,10 +32,13 @@ To run this application on your local system:
    - DATABASE_URL=sqlite:///data_analysis.db (default)
 
 6. Run the application:
-   python app.py
+   python main.py
    
    Or with gunicorn:
    gunicorn --bind 0.0.0.0:5000 --reuse-port --reload main:app
+   
+   Or directly with app.py:
+   python app.py
 
 7. Open your browser and go to: http://localhost:5000
 
