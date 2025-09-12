@@ -202,12 +202,18 @@ class FileUploadHandler {
 
     updateFileList() {
         const fileListContainer = document.getElementById('fileList');
+        const selectedFilesContainer = document.getElementById('selectedFiles');
+        
         if (!fileListContainer) return;
 
         if (this.selectedFiles.length === 0) {
             fileListContainer.innerHTML = '<p class="text-muted">No files selected</p>';
+            if (selectedFilesContainer) selectedFilesContainer.style.display = 'none';
             return;
         }
+
+        // Show the selected files container
+        if (selectedFilesContainer) selectedFilesContainer.style.display = 'block';
 
         const fileListHTML = this.selectedFiles.map(file => `
             <div class="selected-file d-flex justify-content-between align-items-center p-2 border rounded mb-2">
