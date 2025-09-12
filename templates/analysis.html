@@ -3,30 +3,32 @@
 {% block title %}Analysis Results - Data Analysis Tool{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
+<input type="hidden" id="sessionId" value="{{ session_id }}">
+
+<!-- Alert Container -->
+<div id="alertContainer" class="mb-3"></div>
+
+<div class="d-flex justify-content-between align-items-center mb-4" id="analysisHeader">
     <div>
         <h2>Analysis Results</h2>
-        <p class="text-muted mb-0">Session: {{ session.session_name }}</p>
-        <small class="text-muted">
-            Analyzed {{ session.file_count }} files • 
-            {{ session.created_at.strftime('%Y-%m-%d %H:%M:%S') }}
-        </small>
+        <p class="text-muted mb-0" id="sessionName">Loading session...</p>
+        <small class="text-muted" id="sessionDetails"></small>
     </div>
     <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
             <i data-feather="download"></i> Export Results
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='json') }}">
+            <li><a class="dropdown-item" href="#" data-export-format="json">
                 <i data-feather="file-text"></i> JSON Report
             </a></li>
-            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='csv') }}">
+            <li><a class="dropdown-item" href="#" data-export-format="csv">
                 <i data-feather="grid"></i> CSV Export
             </a></li>
-            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='html') }}">
+            <li><a class="dropdown-item" href="#" data-export-format="html">
                 <i data-feather="layout"></i> HTML Report
             </a></li>
-            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='txt') }}">
+            <li><a class="dropdown-item" href="#" data-export-format="txt">
                 <i data-feather="file"></i> Text Report
             </a></li>
         </ul>
@@ -34,13 +36,12 @@
 </div>
 
 <!-- Summary Cards -->
-{% if results.summary %}
-<div class="row mb-4">
+<div class="row mb-4" id="summaryCards" style="display: none;">
     <div class="col-md-3">
         <div class="card bg-primary text-white">
             <div class="card-body text-center">
                 <i data-feather="file" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1">{{ results.summary.total_files }}</h3>
+                <h3 class="mb-1" id="totalFiles">-</h3>
                 <p class="mb-0">Files Analyzed</p>
             </div>
         </div>
@@ -49,7 +50,7 @@
         <div class="card bg-success text-white">
             <div class="card-body text-center">
                 <i data-feather="database" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1">{{ results.summary.total_rows }}</h3>
+                <h3 class="mb-1" id="totalRows">-</h3>
                 <p class="mb-0">Total Rows</p>
             </div>
         </div>
@@ -58,7 +59,7 @@
         <div class="card bg-warning text-white">
             <div class="card-body text-center">
                 <i data-feather="columns" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1">{{ results.summary.total_columns }}</h3>
+                <h3 class="mb-1" id="totalColumns">-</h3>
                 <p class="mb-0">Total Columns</p>
             </div>
         </div>
@@ -67,13 +68,12 @@
         <div class="card bg-info text-white">
             <div class="card-body text-center">
                 <i data-feather="check-circle" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1">{{ "%.1f"|format(results.summary.data_quality_score) }}%</h3>
+                <h3 class="mb-1" id="qualityScore">-</h3>
                 <p class="mb-0">Quality Score</p>
             </div>
         </div>
     </div>
 </div>
-{% endif %}
 
 <!-- Navigation Tabs -->
 <ul class="nav nav-tabs mb-4" id="analysisTab" role="tablist">
@@ -101,10 +101,18 @@
     </li>
 </ul>
 
-<div class="tab-content" id="analysisTabContent">
+<!-- Main Content Area -->
+<div id="analysisContent">
+    <div class="d-flex align-items-center justify-content-center py-4">
+        <div class="spinner-border text-primary me-2" role="status"></div>
+        <span>Loading analysis data...</span>
+    </div>
+</div>
+
+<div class="tab-content" id="analysisTabContent" style="display: none;">
     <!-- Data Types Tab -->
     <div class="tab-pane fade show active" id="data-types" role="tabpanel">
-        {% if results.data_types %}
+        <div id="dataTypesContent"></div>
             {% for filename, file_results in results.data_types.items() %}
             <div class="card mb-4">
                 <div class="card-header">
@@ -521,6 +529,7 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
 <script src="{{ url_for('static', filename='js/analysis.js') }}"></script>
 <script>
     // Initialize analysis page
