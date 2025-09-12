@@ -159,11 +159,14 @@ def register_routes(app):
             session.set_results(analysis_results)
             db.session.commit()
             
+            # Get the serialized results to return
+            serialized_results = session.get_results()
+            
             return jsonify({
                 'status': 'success',
                 'message': 'Analysis completed successfully',
                 'session_id': session.id,
-                'results': analysis_results
+                'results': serialized_results
             })
         
         except Exception as e:
