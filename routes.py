@@ -19,22 +19,58 @@ def allowed_file(filename):
 def register_routes(app):
     """Register all routes with the Flask app"""
 
+    # =======================
+    # UI ROUTES (Templates Only)
+    # =======================
     @app.route('/')
     def index():
         """Home page"""
-        recent_sessions = AnalysisSession.query.order_by(AnalysisSession.created_at.desc()).limit(5).all()
-        return render_template('index.html', recent_sessions=recent_sessions)
+        return render_template('index.html')
 
-    @app.route('/upload', methods=['GET', 'POST'])
-    def upload_files():
+    @app.route('/upload')
+    def upload_page():
         """File upload page"""
-        if request.method == 'POST':
+        return render_template('upload.html')
+
+    @app.route('/analyze/<int:session_id>')
+    def analysis_page(session_id):
+        """Analysis results page"""
+        return render_template('analysis.html', session_id=session_id)
+
+    @app.route('/session/<int:session_id>')
+    def session_page(session_id):
+        """View a specific analysis session page"""
+        return render_template('analysis.html', session_id=session_id)
+
+    # =======================
+    # API ROUTES (JSON Only)
+    # =======================
+    @app.route('/api/sessions')
+    def api_get_sessions():
+        """Get recent analysis sessions"""
+        recent_sessions = AnalysisSession.query.order_by(AnalysisSession.created_at.desc()).limit(5).all()
+        return jsonify({
+            'status': 'success',
+            'sessions': [{
+                'id': session.id,
+                'session_name': session.session_name,
+                'file_count': session.file_count,
+                'created_at': session.created_at.isoformat()
+            } for session in recent_sessions]
+        })
+
+    @app.route('/api/upload', methods=['POST'])
+    def api_upload_files():
+        """API endpoint for file upload"""
+        try:
             session_name = request.form.get('session_name', 'Unnamed Session')
             files = request.files.getlist('files[]')
             
             if not files or all(file.filename == '' for file in files):
-                flash('No files selected', 'error')
-                return redirect(request.url)
+                return jsonify({
+                    'status': 'error',
+                    'message': 'No files selected'
+                }), 400
             
             # Create new analysis session
             session = AnalysisSession(session_name=session_name)
@@ -42,6 +78,7 @@ def register_routes(app):
             db.session.commit()
             
             uploaded_files = []
+            invalid_files = []
             
             for file in files:
                 if file and file.filename and allowed_file(file.filename):
@@ -63,23 +100,43 @@ def register_routes(app):
                     db.session.add(uploaded_file)
                     uploaded_files.append(uploaded_file)
                 else:
-                    flash(f'Invalid file type: {file.filename}', 'warning')
+                    invalid_files.append(file.filename)
             
             session.file_count = len(uploaded_files)
             db.session.commit()
             
             if uploaded_files:
-                flash(f'Successfully uploaded {len(uploaded_files)} files', 'success')
-                return redirect(url_for('analyze_data', session_id=session.id))
+                return jsonify({
+                    'status': 'success',
+                    'message': f'Successfully uploaded {len(uploaded_files)} files',
+                    'session_id': session.id,
+                    'uploaded_files': [f.filename for f in uploaded_files],
+                    'invalid_files': invalid_files
+                })
             else:
-                flash('No valid files were uploaded', 'error')
-        
-        return render_template('upload.html')
+                return jsonify({
+                    'status': 'error',
+                    'message': 'No valid files were uploaded',
+                    'invalid_files': invalid_files
+                }), 400
+                
+        except Exception as e:
+            logging.error(f"Upload error: {str(e)}")
+            return jsonify({
+                'status': 'error',
+                'message': f'Upload failed: {str(e)}'
+            }), 500
 
-    @app.route('/analyze/<int:session_id>')
-    def analyze_data(session_id):
-        """Analyze uploaded data and show results"""
-        session = AnalysisSession.query.get_or_404(session_id)
+    @app.route('/api/analyze/<int:session_id>', methods=['POST'])
+    def api_analyze_data(session_id):
+        """API endpoint to analyze uploaded data"""
+        session = AnalysisSession.query.get(session_id)
+        
+        if not session:
+            return jsonify({
+                'status': 'error',
+                'message': 'Session not found'
+            }), 404
         
         try:
             # Parse all files in the session
@@ -102,25 +159,68 @@ def register_routes(app):
             session.set_results(analysis_results)
             db.session.commit()
             
-            return render_template('analysis.html', 
-                                 session=session, 
-                                 results=analysis_results,
-                                 parsed_data=parsed_data)
+            return jsonify({
+                'status': 'success',
+                'message': 'Analysis completed successfully',
+                'session_id': session.id,
+                'results': analysis_results
+            })
         
         except Exception as e:
             logging.error(f"Analysis error: {str(e)}")
-            flash(f'Analysis failed: {str(e)}', 'error')
-            return redirect(url_for('index'))
+            return jsonify({
+                'status': 'error',
+                'message': f'Analysis failed: {str(e)}'
+            }), 500
 
-    @app.route('/export/<int:session_id>/<format>')
-    def export_results(session_id, format):
-        """Export analysis results"""
-        session = AnalysisSession.query.get_or_404(session_id)
+    @app.route('/api/session/<int:session_id>')
+    def api_get_session(session_id):
+        """API endpoint to get session details"""
+        session = AnalysisSession.query.get(session_id)
+        
+        if not session:
+            return jsonify({
+                'status': 'error',
+                'message': 'Session not found'
+            }), 404
+        
+        results = session.get_results()
+        
+        return jsonify({
+            'status': 'success',
+            'session': {
+                'id': session.id,
+                'session_name': session.session_name,
+                'file_count': session.file_count,
+                'created_at': session.created_at.isoformat(),
+                'files': [{
+                    'id': f.id,
+                    'filename': f.filename,
+                    'file_type': f.file_type,
+                    'file_size': f.file_size
+                } for f in session.files]
+            },
+            'results': results
+        })
+
+    @app.route('/api/export/<int:session_id>/<format>')
+    def api_export_results(session_id, format):
+        """API endpoint for export analysis results"""
+        session = AnalysisSession.query.get(session_id)
+        
+        if not session:
+            return jsonify({
+                'status': 'error',
+                'message': 'Session not found'
+            }), 404
+        
         results = session.get_results()
         
         if not results:
-            flash('No analysis results to export', 'error')
-            return redirect(url_for('index'))
+            return jsonify({
+                'status': 'error',
+                'message': 'No analysis results to export'
+            }), 400
         
         try:
             export_utils = ExportUtils()
@@ -129,42 +229,52 @@ def register_routes(app):
         
         except Exception as e:
             logging.error(f"Export error: {str(e)}")
-            flash(f'Export failed: {str(e)}', 'error')
-            return redirect(url_for('analyze_data', session_id=session_id))
+            return jsonify({
+                'status': 'error',
+                'message': f'Export failed: {str(e)}'
+            }), 500
 
-    @app.route('/session/<int:session_id>')
-    def view_session(session_id):
-        """View a specific analysis session"""
-        session = AnalysisSession.query.get_or_404(session_id)
-        results = session.get_results()
+    @app.route('/api/delete_session/<int:session_id>', methods=['DELETE'])
+    def api_delete_session(session_id):
+        """API endpoint to delete an analysis session and its files"""
+        session = AnalysisSession.query.get(session_id)
         
-        if not results:
-            flash('No analysis results found for this session', 'warning')
-            return redirect(url_for('index'))
+        if not session:
+            return jsonify({
+                'status': 'error',
+                'message': 'Session not found'
+            }), 404
         
-        return render_template('analysis.html', 
-                             session=session, 
-                             results=results)
-
-    @app.route('/delete_session/<int:session_id>', methods=['POST'])
-    def delete_session(session_id):
-        """Delete an analysis session and its files"""
-        session = AnalysisSession.query.get_or_404(session_id)
+        try:
+            # Delete uploaded files
+            deleted_files = []
+            for uploaded_file in session.files:
+                try:
+                    if os.path.exists(uploaded_file.file_path):
+                        os.remove(uploaded_file.file_path)
+                        deleted_files.append(uploaded_file.filename)
+                except Exception as e:
+                    logging.warning(f"Could not delete file {uploaded_file.file_path}: {str(e)}")
+            
+            session_name = session.session_name
+            
+            # Delete from database
+            db.session.delete(session)
+            db.session.commit()
+            
+            return jsonify({
+                'status': 'success',
+                'message': 'Session deleted successfully',
+                'session_name': session_name,
+                'deleted_files': deleted_files
+            })
         
-        # Delete uploaded files
-        for uploaded_file in session.files:
-            try:
-                if os.path.exists(uploaded_file.file_path):
-                    os.remove(uploaded_file.file_path)
-            except Exception as e:
-                logging.warning(f"Could not delete file {uploaded_file.file_path}: {str(e)}")
-        
-        # Delete from database
-        db.session.delete(session)
-        db.session.commit()
-        
-        flash('Session deleted successfully', 'success')
-        return redirect(url_for('index'))
+        except Exception as e:
+            logging.error(f"Delete session error: {str(e)}")
+            return jsonify({
+                'status': 'error',
+                'message': f'Delete failed: {str(e)}'
+            }), 500
 
 def perform_comprehensive_analysis(parsed_data):
     """Perform comprehensive data analysis"""
