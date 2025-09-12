@@ -323,16 +323,59 @@ def perform_comprehensive_analysis(parsed_data):
 
 def generate_file_insights(data, filename):
     """Generate insights for a specific file"""
+    # Basic statistics
+    memory_usage = data.memory_usage(deep=True).sum()
+    missing_data_count = data.isnull().sum().sum()
+    total_cells = len(data) * len(data.columns)
+    missing_percentage = (missing_data_count / total_cells * 100) if total_cells > 0 else 0
+    
     insights = {
-        'row_count': len(data),
-        'column_count': len(data.columns),
-        'memory_usage': data.memory_usage(deep=True).sum(),
-        'missing_data': data.isnull().sum().to_dict(),
-        'duplicate_rows': data.duplicated().sum(),
-        'numeric_columns': list(data.select_dtypes(include=['number']).columns),
-        'text_columns': list(data.select_dtypes(include=['object']).columns),
-        'datetime_columns': list(data.select_dtypes(include=['datetime']).columns)
+        'summary': {
+            'rows': len(data),
+            'columns': len(data.columns), 
+            'memory_usage': f"{memory_usage / 1024:.1f} KB" if memory_usage < 1024*1024 else f"{memory_usage / (1024*1024):.1f} MB",
+            'missing_data_percentage': missing_percentage
+        },
+        'key_insights': [],
+        'recommendations': [],
+        'data_quality_issues': []
     }
+    
+    # Generate key insights
+    if len(data) > 0:
+        insights['key_insights'].append(f"Dataset contains {len(data):,} rows across {len(data.columns)} columns")
+        
+        numeric_cols = len(data.select_dtypes(include=['number']).columns)
+        if numeric_cols > 0:
+            insights['key_insights'].append(f"Found {numeric_cols} numeric columns for statistical analysis")
+            
+        text_cols = len(data.select_dtypes(include=['object']).columns)  
+        if text_cols > 0:
+            insights['key_insights'].append(f"Identified {text_cols} text columns for pattern analysis")
+            
+        datetime_cols = len(data.select_dtypes(include=['datetime']).columns)
+        if datetime_cols > 0:
+            insights['key_insights'].append(f"Detected {datetime_cols} date/time columns for temporal analysis")
+    
+    # Generate recommendations
+    if missing_percentage > 10:
+        insights['recommendations'].append(f"Consider addressing missing data ({missing_percentage:.1f}% of cells are empty)")
+        
+    duplicate_rows = data.duplicated().sum()
+    if duplicate_rows > 0:
+        insights['recommendations'].append(f"Found {duplicate_rows} duplicate rows that could be removed")
+        
+    # Check for potential ID columns
+    for col in data.columns:
+        if data[col].nunique() == len(data) and 'id' in col.lower():
+            insights['key_insights'].append(f"Column '{col}' appears to be a unique identifier")
+            
+    # Data quality issues
+    if missing_percentage > 20:
+        insights['data_quality_issues'].append(f"High missing data rate: {missing_percentage:.1f}% of cells are empty")
+        
+    if duplicate_rows > len(data) * 0.1:
+        insights['data_quality_issues'].append(f"High duplicate rate: {duplicate_rows} duplicate rows ({duplicate_rows/len(data)*100:.1f}%)")
     
     return insights
 

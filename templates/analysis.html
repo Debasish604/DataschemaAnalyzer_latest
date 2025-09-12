@@ -411,7 +411,7 @@
                                 <li class="list-group-item">
                                     <strong>${key.column}</strong> 
                                     <span class="badge bg-primary ms-2">${(key.uniqueness * 100).toFixed(1)}% unique</span>
-                                    <div class="small text-muted">${key.reason}</div>
+                                    <div class="small text-muted">${key.key_type || key.reason || 'Potential identifier'}</div>
                                 </li>`;
                         });
                         
@@ -442,10 +442,10 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card bg-light">
                                         <div class="card-body">
-                                            <h6 class="card-title">${fk.column}</h6>
+                                            <h6 class="card-title">${fk.source_column || fk.column}</h6>
                                             <p class="card-text">
                                                 <strong>Matches:</strong> ${fk.target_table}.${fk.target_column}<br>
-                                                <strong>Match Rate:</strong> ${(fk.match_percentage * 100).toFixed(1)}%
+                                                <strong>Match Rate:</strong> ${((fk.referential_integrity || fk.match_percentage || 0) * 100).toFixed(1)}%
                                             </p>
                                         </div>
                                     </div>
@@ -479,11 +479,11 @@
                             </h6>
                             <p>
                                 <strong>Join on:</strong> 
-                                ${suggestion.table1}.${suggestion.column1} = ${suggestion.table2}.${suggestion.column2}
+                                ${suggestion.table1}.${suggestion.join_column || suggestion.column1 || 'unknown'} = ${suggestion.table2}.${suggestion.join_column || suggestion.column2 || 'unknown'}
                             </p>
                             <div class="small text-muted">
-                                <strong>Confidence:</strong> ${(suggestion.confidence * 100).toFixed(1)}% | 
-                                <strong>Type:</strong> ${suggestion.join_type}
+                                <strong>Confidence:</strong> ${((suggestion.confidence || 0) * 100).toFixed(1)}% | 
+                                <strong>Type:</strong> ${suggestion.recommended_join_type || suggestion.join_type || 'unknown'}
                             </div>
                         </div>`;
                 });
@@ -525,7 +525,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h5 class="mb-0">
-                                    <i data-feather="lightbulb"></i> ${filename} - Data Insights
+                                    <i data-feather="info"></i> ${filename} - Data Insights
                                 </h5>
                             </div>
                             <div class="card-body">`;
