@@ -386,19 +386,122 @@
         const container = document.getElementById('relationshipsContent');
         let html = '';
         
-        if (Object.keys(relationships).length === 0) {
+        if (!relationships || Object.keys(relationships).length === 0) {
             html = '<div class="alert alert-info">No relationships detected between files.</div>';
         } else {
-            for (const [key, relationshipData] of Object.entries(relationships)) {
+            // Display potential keys
+            if (relationships.potential_keys && Object.keys(relationships.potential_keys).length > 0) {
                 html += `
                     <div class="card mb-4">
                         <div class="card-header">
                             <h5 class="mb-0">
-                                <i data-feather="link"></i> ${key}
+                                <i data-feather="key"></i> Potential Keys
+                            </h5>
+                        </div>
+                        <div class="card-body">`;
+                
+                for (const [filename, keys] of Object.entries(relationships.potential_keys)) {
+                    if (keys.length > 0) {
+                        html += `
+                            <h6>${filename}</h6>
+                            <ul class="list-group list-group-flush mb-3">`;
+                        
+                        keys.forEach(key => {
+                            html += `
+                                <li class="list-group-item">
+                                    <strong>${key.column}</strong> 
+                                    <span class="badge bg-primary ms-2">${(key.uniqueness * 100).toFixed(1)}% unique</span>
+                                    <div class="small text-muted">${key.reason}</div>
+                                </li>`;
+                        });
+                        
+                        html += `</ul>`;
+                    }
+                }
+                
+                html += `</div></div>`;
+            }
+            
+            // Display foreign key candidates
+            if (relationships.foreign_key_candidates && Object.keys(relationships.foreign_key_candidates).length > 0) {
+                html += `
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i data-feather="link-2"></i> Foreign Key Candidates
+                            </h5>
+                        </div>
+                        <div class="card-body">`;
+                
+                for (const [filename, fks] of Object.entries(relationships.foreign_key_candidates)) {
+                    if (fks.length > 0) {
+                        html += `<h6>${filename}</h6><div class="row">`;
+                        
+                        fks.forEach(fk => {
+                            html += `
+                                <div class="col-md-6 mb-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title">${fk.column}</h6>
+                                            <p class="card-text">
+                                                <strong>Matches:</strong> ${fk.target_table}.${fk.target_column}<br>
+                                                <strong>Match Rate:</strong> ${(fk.match_percentage * 100).toFixed(1)}%
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        });
+                        
+                        html += `</div>`;
+                    }
+                }
+                
+                html += `</div></div>`;
+            }
+            
+            // Display join suggestions
+            if (relationships.join_suggestions && relationships.join_suggestions.length > 0) {
+                html += `
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i data-feather="shuffle"></i> Join Suggestions
+                            </h5>
+                        </div>
+                        <div class="card-body">`;
+                
+                relationships.join_suggestions.forEach(suggestion => {
+                    html += `
+                        <div class="border rounded p-3 mb-3">
+                            <h6>
+                                <span class="badge bg-success">Recommended</span>
+                                ${suggestion.table1} ⟷ ${suggestion.table2}
+                            </h6>
+                            <p>
+                                <strong>Join on:</strong> 
+                                ${suggestion.table1}.${suggestion.column1} = ${suggestion.table2}.${suggestion.column2}
+                            </p>
+                            <div class="small text-muted">
+                                <strong>Confidence:</strong> ${(suggestion.confidence * 100).toFixed(1)}% | 
+                                <strong>Type:</strong> ${suggestion.join_type}
+                            </div>
+                        </div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // If none of the specific sections had data, show raw data
+            if (!html) {
+                html = `
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i data-feather="link"></i> Relationship Analysis Results
                             </h5>
                         </div>
                         <div class="card-body">
-                            <pre class="bg-light p-3 rounded">${JSON.stringify(relationshipData, null, 2)}</pre>
+                            <pre class="bg-light p-3 rounded">${JSON.stringify(relationships, null, 2)}</pre>
                         </div>
                     </div>`;
             }
@@ -412,33 +515,127 @@
         const container = document.getElementById('insightsContent');
         let html = '';
         
-        if (Array.isArray(insights) && insights.length > 0) {
-            html = `
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i data-feather="lightbulb"></i> AI-Generated Insights
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="list-group list-group-flush">`;
-            
-            insights.forEach((insight, index) => {
-                html += `
-                    <div class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-1">Insight #${index + 1}</h6>
-                        </div>
-                        <p class="mb-1">${insight}</p>
-                    </div>`;
-            });
-            
-            html += `
-                        </div>
-                    </div>
-                </div>`;
-        } else {
+        if (!insights || Object.keys(insights).length === 0) {
             html = '<div class="alert alert-info">No insights generated for this analysis.</div>';
+        } else {
+            // Insights are organized by filename
+            for (const [filename, fileInsights] of Object.entries(insights)) {
+                if (fileInsights && Object.keys(fileInsights).length > 0) {
+                    html += `
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i data-feather="lightbulb"></i> ${filename} - Data Insights
+                                </h5>
+                            </div>
+                            <div class="card-body">`;
+                    
+                    // Display summary statistics
+                    if (fileInsights.summary) {
+                        html += `
+                            <div class="mb-4">
+                                <h6>File Summary</h6>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="text-center">
+                                            <div class="h4 text-primary">${fileInsights.summary.rows?.toLocaleString() || 'N/A'}</div>
+                                            <div class="small text-muted">Rows</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-center">
+                                            <div class="h4 text-success">${fileInsights.summary.columns || 'N/A'}</div>
+                                            <div class="small text-muted">Columns</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-center">
+                                            <div class="h4 text-warning">${fileInsights.summary.memory_usage || 'N/A'}</div>
+                                            <div class="small text-muted">Memory</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-center">
+                                            <div class="h4 text-info">${fileInsights.summary.missing_data_percentage?.toFixed(1) || 'N/A'}%</div>
+                                            <div class="small text-muted">Missing Data</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                    }
+                    
+                    // Display key insights
+                    if (fileInsights.key_insights && fileInsights.key_insights.length > 0) {
+                        html += `
+                            <div class="mb-4">
+                                <h6>Key Insights</h6>
+                                <ul class="list-group list-group-flush">`;
+                        
+                        fileInsights.key_insights.forEach(insight => {
+                            html += `
+                                <li class="list-group-item">
+                                    <i data-feather="check-circle" class="text-success me-2"></i>
+                                    ${insight}
+                                </li>`;
+                        });
+                        
+                        html += `</ul></div>`;
+                    }
+                    
+                    // Display recommendations  
+                    if (fileInsights.recommendations && fileInsights.recommendations.length > 0) {
+                        html += `
+                            <div class="mb-4">
+                                <h6>Recommendations</h6>
+                                <ul class="list-group list-group-flush">`;
+                        
+                        fileInsights.recommendations.forEach(rec => {
+                            html += `
+                                <li class="list-group-item">
+                                    <i data-feather="arrow-right" class="text-primary me-2"></i>
+                                    ${rec}
+                                </li>`;
+                        });
+                        
+                        html += `</ul></div>`;
+                    }
+                    
+                    // Display data quality issues
+                    if (fileInsights.data_quality_issues && fileInsights.data_quality_issues.length > 0) {
+                        html += `
+                            <div class="mb-4">
+                                <h6>Data Quality Issues</h6>
+                                <ul class="list-group list-group-flush">`;
+                        
+                        fileInsights.data_quality_issues.forEach(issue => {
+                            html += `
+                                <li class="list-group-item">
+                                    <i data-feather="alert-triangle" class="text-warning me-2"></i>
+                                    ${issue}
+                                </li>`;
+                        });
+                        
+                        html += `</ul></div>`;
+                    }
+                    
+                    html += `</div></div>`;
+                }
+            }
+            
+            // If no structured insights, show raw data
+            if (!html) {
+                html = `
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i data-feather="info"></i> Analysis Insights
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-light p-3 rounded">${JSON.stringify(insights, null, 2)}</pre>
+                        </div>
+                    </div>`;
+            }
         }
         
         container.innerHTML = html;
