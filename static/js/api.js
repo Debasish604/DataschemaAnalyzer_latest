@@ -8,11 +8,13 @@ class DataAnalysisAPI {
     // Helper method to make HTTP requests
     async makeRequest(url, options = {}) {
         try {
+            // Don't set Content-Type for FormData (browser will set correct boundary)
+            const headers = options.body instanceof FormData 
+                ? (options.headers || {})
+                : { 'Content-Type': 'application/json', ...(options.headers || {}) };
+            
             const response = await fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...options.headers
-                },
+                headers,
                 ...options
             });
 
