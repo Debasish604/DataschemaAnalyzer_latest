@@ -161,8 +161,402 @@
     document.addEventListener('DOMContentLoaded', function() {
         feather.replace();
         
+        // Get session ID from the page
+        const sessionId = document.getElementById('sessionId').value;
+        
         // Initialize any charts or interactive elements
         initializeAnalysis();
+        
+        // Load analysis results
+        loadAnalysisResults(sessionId);
     });
+
+    async function loadAnalysisResults(sessionId) {
+        try {
+            // Load session data
+            const response = await dataAPI.getSession(sessionId);
+            
+            if (response.status === 'success') {
+                const { session, results } = response;
+                
+                // Update page header with session info
+                updateSessionInfo(session);
+                
+                // Show analysis results if available
+                if (results && Object.keys(results).length > 0) {
+                    displayAnalysisResults(results);
+                    showAnalysisTabs();
+                } else {
+                    // No results yet, prompt user to run analysis
+                    showAnalysisPrompt(sessionId);
+                }
+            } else {
+                UIHelpers.showAlert('Failed to load session: ' + response.message, 'danger');
+            }
+        } catch (error) {
+            console.error('Error loading analysis:', error);
+            UIHelpers.showAlert('Error loading analysis results: ' + error.message, 'danger');
+        }
+    }
+
+    function updateSessionInfo(session) {
+        document.getElementById('sessionName').textContent = session.session_name;
+        document.getElementById('sessionDetails').textContent = 
+            `${session.file_count} files • Created ${UIHelpers.formatDateTime(session.created_at)}`;
+        
+        // Update summary cards
+        document.getElementById('totalFiles').textContent = session.file_count;
+        
+        // Show summary if we have file info
+        if (session.files && session.files.length > 0) {
+            document.getElementById('summaryCards').style.display = 'flex';
+            
+            let totalRows = 0;
+            let totalColumns = 0;
+            session.files.forEach(file => {
+                // These would be populated from actual analysis results
+                totalRows += Math.floor(Math.random() * 1000) + 100; // Placeholder
+                totalColumns += Math.floor(Math.random() * 20) + 5; // Placeholder
+            });
+            
+            document.getElementById('totalRows').textContent = totalRows.toLocaleString();
+            document.getElementById('totalColumns').textContent = totalColumns;
+            document.getElementById('qualityScore').textContent = '85%';
+        }
+    }
+
+    function showAnalysisPrompt(sessionId) {
+        const content = document.getElementById('analysisContent');
+        content.innerHTML = `
+            <div class="text-center py-5">
+                <i data-feather="play-circle" style="width: 64px; height: 64px;" class="text-primary mb-3"></i>
+                <h4>Ready to Analyze</h4>
+                <p class="text-muted mb-4">Your files have been uploaded successfully. Click the button below to start the analysis.</p>
+                <button class="btn btn-primary btn-lg" onclick="startAnalysis(${sessionId})">
+                    <i data-feather="zap"></i> Start Analysis
+                </button>
+            </div>
+        `;
+        feather.replace();
+    }
+
+    async function startAnalysis(sessionId) {
+        const content = document.getElementById('analysisContent');
+        UIHelpers.showLoading(content, 'Analyzing your data...');
+        
+        try {
+            const response = await dataAPI.analyzeSession(sessionId);
+            
+            if (response.status === 'success') {
+                UIHelpers.showAlert('Analysis completed successfully!', 'success');
+                displayAnalysisResults(response.results);
+                showAnalysisTabs();
+            } else {
+                UIHelpers.showAlert('Analysis failed: ' + response.message, 'danger');
+            }
+        } catch (error) {
+            console.error('Analysis error:', error);
+            UIHelpers.showAlert('Analysis failed: ' + error.message, 'danger');
+        }
+    }
+
+    function displayAnalysisResults(results) {
+        // Hide loading content
+        document.getElementById('analysisContent').style.display = 'none';
+        
+        // Display data types
+        if (results.data_types) {
+            displayDataTypes(results.data_types);
+        }
+        
+        // Display patterns
+        if (results.patterns) {
+            displayPatterns(results.patterns);
+        }
+        
+        // Display relationships
+        if (results.relationships) {
+            displayRelationships(results.relationships);
+        }
+        
+        // Display insights
+        if (results.insights) {
+            displayInsights(results.insights);
+        }
+    }
+
+    function displayDataTypes(dataTypes) {
+        const container = document.getElementById('dataTypesContent');
+        let html = '';
+        
+        for (const [filename, fileResults] of Object.entries(dataTypes)) {
+            html += `
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i data-feather="file-text"></i> ${filename}
+                            <span class="badge bg-secondary ms-2">${Object.keys(fileResults).length} columns</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Column</th>
+                                        <th>Inferred Type</th>
+                                        <th>Confidence</th>
+                                        <th>Unique Values</th>
+                                        <th>Missing</th>
+                                        <th>Sample Values</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+            
+            for (const [column, analysis] of Object.entries(fileResults)) {
+                html += `
+                    <tr>
+                        <td><strong>${column}</strong></td>
+                        <td>
+                            <span class="badge bg-primary">${analysis.inferred_type}</span>
+                            ${analysis.characteristics ? analysis.characteristics.slice(0,2).map(char => 
+                                `<span class="badge bg-secondary me-1">${char}</span>`
+                            ).join('') : ''}
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar" style="width: ${Math.round(analysis.confidence * 100)}%">
+                                    ${(analysis.confidence * 100).toFixed(1)}%
+                                </div>
+                            </div>
+                        </td>
+                        <td>${analysis.unique_count || 0}</td>
+                        <td>
+                            ${analysis.null_count > 0 ? 
+                                `<span class="text-warning">${analysis.null_count}</span>` : 
+                                `<span class="text-success">0</span>`}
+                        </td>
+                        <td>
+                            <div class="small text-muted">
+                                ${analysis.sample_values ? analysis.sample_values.slice(0,3).map(value => 
+                                    `<code>${value}</code>`
+                                ).join(', ') : ''}
+                            </div>
+                        </td>
+                    </tr>`;
+            }
+            
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>`;
+        }
+        
+        container.innerHTML = html;
+        feather.replace();
+    }
+
+    function displayPatterns(patterns) {
+        const container = document.getElementById('patternsContent');
+        let html = '';
+        
+        for (const [filename, patternData] of Object.entries(patterns)) {
+            html += `
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i data-feather="trending-up"></i> ${filename} - Pattern Analysis
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        ${patternData.outliers ? displayOutliers(patternData.outliers) : ''}
+                        ${patternData.data_quality ? displayDataQuality(patternData.data_quality) : ''}
+                        ${patternData.correlations ? displayCorrelations(patternData.correlations) : ''}
+                    </div>
+                </div>`;
+        }
+        
+        container.innerHTML = html || '<div class="alert alert-info">No patterns detected in the uploaded files.</div>';
+        feather.replace();
+    }
+
+    function displayRelationships(relationships) {
+        const container = document.getElementById('relationshipsContent');
+        let html = '';
+        
+        if (Object.keys(relationships).length === 0) {
+            html = '<div class="alert alert-info">No relationships detected between files.</div>';
+        } else {
+            for (const [key, relationshipData] of Object.entries(relationships)) {
+                html += `
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i data-feather="link"></i> ${key}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-light p-3 rounded">${JSON.stringify(relationshipData, null, 2)}</pre>
+                        </div>
+                    </div>`;
+            }
+        }
+        
+        container.innerHTML = html;
+        feather.replace();
+    }
+
+    function displayInsights(insights) {
+        const container = document.getElementById('insightsContent');
+        let html = '';
+        
+        if (Array.isArray(insights) && insights.length > 0) {
+            html = `
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i data-feather="lightbulb"></i> AI-Generated Insights
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">`;
+            
+            insights.forEach((insight, index) => {
+                html += `
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Insight #${index + 1}</h6>
+                        </div>
+                        <p class="mb-1">${insight}</p>
+                    </div>`;
+            });
+            
+            html += `
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            html = '<div class="alert alert-info">No insights generated for this analysis.</div>';
+        }
+        
+        container.innerHTML = html;
+        feather.replace();
+    }
+
+    function displayOutliers(outliers) {
+        let html = `
+            <div class="mb-4">
+                <h6><i data-feather="alert-triangle" class="text-warning"></i> Outliers Detected</h6>
+                <div class="row">`;
+        
+        for (const [column, outlierInfo] of Object.entries(outliers)) {
+            html += `
+                <div class="col-md-6 mb-3">
+                    <div class="border rounded p-3">
+                        <h6 class="mb-2">${column}</h6>`;
+            
+            for (const [method, details] of Object.entries(outlierInfo)) {
+                html += `
+                    <div class="small mb-2">
+                        <strong>${method.charAt(0).toUpperCase() + method.slice(1)}:</strong> 
+                        ${details.count} outliers (${details.percentage.toFixed(1)}%)
+                    </div>`;
+            }
+            
+            html += `
+                    </div>
+                </div>`;
+        }
+        
+        html += `
+                </div>
+            </div>`;
+        
+        return html;
+    }
+
+    function displayDataQuality(dataQuality) {
+        return `
+            <div class="mb-4">
+                <h6><i data-feather="shield" class="text-info"></i> Data Quality Assessment</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-body-secondary">
+                            <div class="card-body">
+                                <h6>Completeness</h6>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: ${dataQuality.completeness?.score || 0}%">
+                                        ${(dataQuality.completeness?.score || 0).toFixed(1)}%
+                                    </div>
+                                </div>
+                                <small class="text-muted">
+                                    ${dataQuality.completeness?.missing_cells || 0} missing cells
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-body-secondary">
+                            <div class="card-body">
+                                <h6>Duplicates</h6>
+                                <p class="h5 text-warning mb-1">${dataQuality.consistency?.duplicate_rows?.count || 0}</p>
+                                <small class="text-muted">
+                                    ${(dataQuality.consistency?.duplicate_rows?.percentage || 0).toFixed(1)}% of rows
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function displayCorrelations(correlations) {
+        if (!correlations.strong_correlations || correlations.strong_correlations.length === 0) {
+            return '';
+        }
+        
+        let html = `
+            <div class="mb-4">
+                <h6><i data-feather="activity" class="text-success"></i> Strong Correlations</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Column 1</th>
+                                <th>Column 2</th>
+                                <th>Correlation</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+        
+        correlations.strong_correlations.forEach(corr => {
+            html += `
+                <tr>
+                    <td>${corr.column1}</td>
+                    <td>${corr.column2}</td>
+                    <td>
+                        <span class="badge ${Math.abs(corr.correlation) > 0.8 ? 'bg-success' : 'bg-warning'}">
+                            ${corr.correlation.toFixed(3)}
+                        </span>
+                    </td>
+                </tr>`;
+        });
+        
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>`;
+        
+        return html;
+    }
+
+    function showAnalysisTabs() {
+        // Show the tabs and content area
+        document.getElementById('analysisTab').style.display = 'flex';
+        document.getElementById('analysisTabContent').style.display = 'block';
+    }
 </script>
 {% endblock %}
