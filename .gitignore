@@ -1,6 +1,10 @@
-/.env/
-/env
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables
+.env
+
+# Virtual environment
 env/
-env 
-/.env
-/_pycache_
