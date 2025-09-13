@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis Report - relation_mapping_20250829_133931</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background-color: #f4f4f4; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+        .section { margin-bottom: 30px; }
+        .subsection { margin-left: 20px; margin-bottom: 15px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .metric { background-color: #e7f3ff; padding: 10px; border-radius: 3px; margin: 5px 0; }
+        .warning { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; }
+        .success { background-color: #d4edda; border-left: 4px solid #28a745; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Data Analysis Report</h1>
+        <p><strong>Session:</strong> relation_mapping_20250829_133931</p>
+        <p><strong>Generated:</strong> 2025-08-29 13:39:31</p>
+    </div>
+
+    <div class="section">
+        <h2>Summary</h2>
+        <div class="metric">Total Files: 2</div>
+        <div class="metric">Total Rows: 150</div>
+        <div class="metric">Total Columns: 9</div>
+        <div class="metric">Data Quality Score: 100.0%</div>
+    </div>
+
+    <div class="section">
+        <h2>Data Type Analysis</h2>
+
+        <div class="subsection">
+            <h3>File: Orders.xlsx</h3>
+            <table>
+                <tr>
+                    <th>Column</th>
+                    <th>Inferred Type</th>
+                    <th>Confidence</th>
+                    <th>Unique Values</th>
+                    <th>Missing Values</th>
+                </tr>
+
+                <tr>
+                    <td>OrderID</td>
+                    <td>integer</td>
+                    <td>1.00</td>
+                    <td>100</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>CustomerID</td>
+                    <td>integer</td>
+                    <td>1.00</td>
+                    <td>45</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>Product</td>
+                    <td>categorical</td>
+                    <td>0.90</td>
+                    <td>7</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>Quantity</td>
+                    <td>integer</td>
+                    <td>1.00</td>
+                    <td>5</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>OrderDate</td>
+                    <td>integer</td>
+                    <td>1.00</td>
+                    <td>88</td>
+                    <td>0</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>File: Customers.xlsx</h3>
+            <table>
+                <tr>
+                    <th>Column</th>
+                    <th>Inferred Type</th>
+                    <th>Confidence</th>
+                    <th>Unique Values</th>
+                    <th>Missing Values</th>
+                </tr>
+
+                <tr>
+                    <td>CustomerID</td>
+                    <td>integer</td>
+                    <td>1.00</td>
+                    <td>50</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>Name</td>
+                    <td>unique_identifier</td>
+                    <td>0.90</td>
+                    <td>50</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td>email</td>
+                    <td>1.00</td>
+                    <td>50</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>City</td>
+                    <td>unique_identifier</td>
+                    <td>0.90</td>
+                    <td>50</td>
+                    <td>0</td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>Table Relationships</h2>
+        <table>
+            <tr>
+                <th>Table 1</th>
+                <th>Table 2</th>
+                <th>Column</th>
+                <th>Relationship Type</th>
+                <th>Strength</th>
+            </tr>
+
+            <tr>
+                <td>Orders.xlsx</td>
+                <td>Customers.xlsx</td>
+                <td>CustomerID</td>
+                <td>strong_overlap</td>
+                <td>0.90</td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>

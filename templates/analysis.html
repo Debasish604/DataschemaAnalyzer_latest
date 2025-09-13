@@ -3,32 +3,30 @@
 {% block title %}Analysis Results - Data Analysis Tool{% endblock %}
 
 {% block content %}
-<input type="hidden" id="sessionId" value="{{ session_id }}">
-
-<!-- Alert Container -->
-<div id="alertContainer" class="mb-3"></div>
-
-<div class="d-flex justify-content-between align-items-center mb-4" id="analysisHeader">
+<div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h2>Analysis Results</h2>
-        <p class="text-muted mb-0" id="sessionName">Loading session...</p>
-        <small class="text-muted" id="sessionDetails"></small>
+        <p class="text-muted mb-0">Session: {{ session.session_name }}</p>
+        <small class="text-muted">
+            Analyzed {{ session.file_count }} files • 
+            {{ session.created_at.strftime('%Y-%m-%d %H:%M:%S') }}
+        </small>
     </div>
     <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
             <i data-feather="download"></i> Export Results
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-export-format="json">
+            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='json') }}">
                 <i data-feather="file-text"></i> JSON Report
             </a></li>
-            <li><a class="dropdown-item" href="#" data-export-format="csv">
+            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='csv') }}">
                 <i data-feather="grid"></i> CSV Export
             </a></li>
-            <li><a class="dropdown-item" href="#" data-export-format="html">
+            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='html') }}">
                 <i data-feather="layout"></i> HTML Report
             </a></li>
-            <li><a class="dropdown-item" href="#" data-export-format="txt">
+            <li><a class="dropdown-item" href="{{ url_for('export_results', session_id=session.id, format='txt') }}">
                 <i data-feather="file"></i> Text Report
             </a></li>
         </ul>
@@ -36,12 +34,13 @@
 </div>
 
 <!-- Summary Cards -->
-<div class="row mb-4" id="summaryCards" style="display: none;">
+{% if results.summary %}
+<div class="row mb-4">
     <div class="col-md-3">
         <div class="card bg-primary text-white">
             <div class="card-body text-center">
                 <i data-feather="file" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1" id="totalFiles">-</h3>
+                <h3 class="mb-1">{{ results.summary.total_files }}</h3>
                 <p class="mb-0">Files Analyzed</p>
             </div>
         </div>
@@ -50,7 +49,7 @@
         <div class="card bg-success text-white">
             <div class="card-body text-center">
                 <i data-feather="database" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1" id="totalRows">-</h3>
+                <h3 class="mb-1">{{ results.summary.total_rows }}</h3>
                 <p class="mb-0">Total Rows</p>
             </div>
         </div>
@@ -59,7 +58,7 @@
         <div class="card bg-warning text-white">
             <div class="card-body text-center">
                 <i data-feather="columns" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1" id="totalColumns">-</h3>
+                <h3 class="mb-1">{{ results.summary.total_columns }}</h3>
                 <p class="mb-0">Total Columns</p>
             </div>
         </div>
@@ -68,15 +67,16 @@
         <div class="card bg-info text-white">
             <div class="card-body text-center">
                 <i data-feather="check-circle" style="width: 32px; height: 32px;" class="mb-2"></i>
-                <h3 class="mb-1" id="qualityScore">-</h3>
+                <h3 class="mb-1">{{ "%.1f"|format(results.summary.data_quality_score) }}%</h3>
                 <p class="mb-0">Quality Score</p>
             </div>
         </div>
     </div>
 </div>
+{% endif %}
 
 <!-- Navigation Tabs -->
-<ul class="nav nav-tabs mb-4" id="analysisTab" role="tablist" style="display: none;">
+<ul class="nav nav-tabs mb-4" id="analysisTab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="data-types-tab" data-bs-toggle="tab" data-bs-target="#data-types" type="button">
             <i data-feather="type"></i> Data Types
@@ -87,11 +87,13 @@
             <i data-feather="trending-up"></i> Patterns
         </button>
     </li>
+    {% if results.relationships %}
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="relationships-tab" data-bs-toggle="tab" data-bs-target="#relationships" type="button">
             <i data-feather="link"></i> Relationships
         </button>
     </li>
+    {% endif %}
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button">
             <i data-feather="info"></i> Insights
@@ -99,40 +101,405 @@
     </li>
 </ul>
 
-<!-- Main Content Area -->
-<div id="analysisContent">
-    <div class="d-flex align-items-center justify-content-center py-4">
-        <div class="spinner-border text-primary me-2" role="status"></div>
-        <span>Loading analysis data...</span>
-    </div>
-</div>
-
-<div class="tab-content" id="analysisTabContent" style="display: none;">
+<div class="tab-content" id="analysisTabContent">
     <!-- Data Types Tab -->
     <div class="tab-pane fade show active" id="data-types" role="tabpanel">
-        <div id="dataTypesContent">
-            <!-- Content will be loaded dynamically by JavaScript -->
-        </div>
+        {% if results.data_types %}
+            {% for filename, file_results in results.data_types.items() %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="file-text"></i> {{ filename }}
+                        <span class="badge bg-secondary ms-2">{{ file_results|length }} columns</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Inferred Type</th>
+                                    <th>Confidence</th>
+                                    <th>Unique Values</th>
+                                    <th>Missing</th>
+                                    <th>Sample Values</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for column, analysis in file_results.items() %}
+                                <tr>
+                                    <td><strong>{{ column }}</strong></td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ analysis.inferred_type }}</span>
+                                        {% if analysis.characteristics %}
+                                            <div class="small text-muted mt-1">
+                                                {% for char in analysis.characteristics[:2] %}
+                                                    <span class="badge bg-secondary me-1">{{ char }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar" style="width: {{ (analysis.confidence * 100)|round }}%">
+                                                {{ "%.1f"|format(analysis.confidence * 100) }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ analysis.unique_count }}</td>
+                                    <td>
+                                        {% if analysis.null_count > 0 %}
+                                            <span class="text-warning">{{ analysis.null_count }}</span>
+                                        {% else %}
+                                            <span class="text-success">0</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="small text-muted">
+                                            {% for value in analysis.sample_values[:3] %}
+                                                <code>{{ value }}</code>{% if not loop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
     <!-- Patterns Tab -->
     <div class="tab-pane fade" id="patterns" role="tabpanel">
-        <div id="patternsContent">
-            <!-- Content will be loaded dynamically by JavaScript -->
-        </div>
+        {% if results.patterns %}
+            {% for filename, pattern_data in results.patterns.items() %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="trending-up"></i> {{ filename }} - Pattern Analysis
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Outliers -->
+                    {% if pattern_data.outliers %}
+                    <div class="mb-4">
+                        <h6><i data-feather="alert-triangle" class="text-warning"></i> Outliers Detected</h6>
+                        <div class="row">
+                            {% for column, outlier_info in pattern_data.outliers.items() %}
+                            <div class="col-md-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h6 class="mb-2">{{ column }}</h6>
+                                    {% for method, details in outlier_info.items() %}
+                                    <div class="small mb-2">
+                                        <strong>{{ method.title() }}:</strong> 
+                                        {{ details.count }} outliers ({{ "%.1f"|format(details.percentage) }}%)
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Data Quality -->
+                    {% if pattern_data.data_quality %}
+                    <div class="mb-4">
+                        <h6><i data-feather="shield" class="text-info"></i> Data Quality Assessment</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-body-secondary">
+                                    <div class="card-body">
+                                        <h6>Completeness</h6>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: {{ pattern_data.data_quality.completeness.score }}%">
+                                                {{ "%.1f"|format(pattern_data.data_quality.completeness.score) }}%
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">
+                                            {{ pattern_data.data_quality.completeness.missing_cells }} missing cells
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-body-secondary">
+                                    <div class="card-body">
+                                        <h6>Duplicates</h6>
+                                        <p class="h5 text-warning mb-1">{{ pattern_data.data_quality.consistency.duplicate_rows.count }}</p>
+                                        <small class="text-muted">
+                                            {{ "%.1f"|format(pattern_data.data_quality.consistency.duplicate_rows.percentage) }}% of rows
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Correlations -->
+                    {% if pattern_data.correlations and pattern_data.correlations.strong_correlations %}
+                    <div class="mb-4">
+                        <h6><i data-feather="activity" class="text-success"></i> Strong Correlations</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Column 1</th>
+                                        <th>Column 2</th>
+                                        <th>Correlation</th>
+                                        <th>Strength</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for corr in pattern_data.correlations.strong_correlations %}
+                                    <tr>
+                                        <td>{{ corr.column1 }}</td>
+                                        <td>{{ corr.column2 }}</td>
+                                        <td>
+                                            <span class="badge {% if corr.correlation > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                                {{ "%.3f"|format(corr.correlation) }}
+                                            </span>
+                                        </td>
+                                        <td>{{ corr.strength }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
     <!-- Relationships Tab -->
+    {% if results.relationships %}
     <div class="tab-pane fade" id="relationships" role="tabpanel">
-        <div id="relationshipsContent">
-            <!-- Content will be loaded dynamically by JavaScript -->
+        <div class="row">
+            <!-- Potential Keys -->
+            {% if results.relationships.potential_keys %}
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i data-feather="key"></i> Potential Primary Keys
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% for table_name, keys in results.relationships.potential_keys.items() %}
+                        <div class="mb-3">
+                            <h6>{{ table_name }}</h6>
+                            {% if keys %}
+                                {% for key in keys[:3] %}
+                                <div class="d-flex justify-content-between align-items-center p-2 border rounded mb-2">
+                                    <div>
+                                        <strong>{{ key.column }}</strong>
+                                        <div class="small text-muted">{{ key.key_type }}</div>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="badge bg-primary">{{ "%.0f"|format(key.score) }}</span>
+                                        <div class="small text-muted">{{ "%.1f"|format(key.uniqueness * 100) }}% unique</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted small">No strong primary key candidates found</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Join Suggestions -->
+            {% if results.relationships.join_suggestions %}
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i data-feather="link-2"></i> Recommended Joins
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% for join in results.relationships.join_suggestions[:5] %}
+                        <div class="border rounded p-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1">{{ join.table1 }} ⟷ {{ join.table2 }}</h6>
+                                    <p class="mb-1"><strong>Column:</strong> {{ join.join_column }}</p>
+                                    <p class="mb-1"><strong>Join Type:</strong> 
+                                        <span class="badge bg-info">{{ join.recommended_join_type }}</span>
+                                    </p>
+                                    <p class="small text-muted mb-0">{{ join.reasoning }}</p>
+                                </div>
+                                <div class="text-end">
+                                    <div class="progress" style="width: 80px; height: 20px;">
+                                        <div class="progress-bar" style="width: {{ (join.confidence * 100)|round }}%">
+                                            {{ "%.0f"|format(join.confidence * 100) }}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
+
+        <!-- Table Relationships -->
+        {% if results.relationships.relationships %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="shuffle"></i> Detected Relationships
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Table 1</th>
+                                <th>Table 2</th>
+                                <th>Column</th>
+                                <th>Relationship Type</th>
+                                <th>Strength</th>
+                                <th>Common Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rel in results.relationships.relationships %}
+                            <tr>
+                                <td>{{ rel.table1 }}</td>
+                                <td>{{ rel.table2 }}</td>
+                                <td><code>{{ rel.column }}</code></td>
+                                <td>
+                                    <span class="badge bg-secondary">{{ rel.relationship_type.replace('_', ' ').title() }}</span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar" style="width: {{ (rel.strength * 100)|round }}%">
+                                            {{ "%.1f"|format(rel.strength * 100) }}%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ rel.values_in_common }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
+    {% endif %}
 
     <!-- Insights Tab -->
     <div class="tab-pane fade" id="insights" role="tabpanel">
-        <div id="insightsContent">
-            <!-- Content will be loaded dynamically by JavaScript -->
+        {% if results.insights %}
+            {% for filename, file_insights in results.insights.items() %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="info"></i> {{ filename }} - File Insights
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Dataset Overview</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>Rows:</strong> {{ file_insights.row_count }}</li>
+                                <li><strong>Columns:</strong> {{ file_insights.column_count }}</li>
+                                <li><strong>Memory Usage:</strong> {{ "%.2f"|format(file_insights.memory_usage / 1024 / 1024) }} MB</li>
+                                <li><strong>Duplicate Rows:</strong> {{ file_insights.duplicate_rows }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Column Types</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center p-2 border rounded">
+                                        <div class="h4 text-primary">{{ file_insights.numeric_columns|length }}</div>
+                                        <div class="small">Numeric</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center p-2 border rounded">
+                                        <div class="h4 text-success">{{ file_insights.text_columns|length }}</div>
+                                        <div class="small">Text</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if file_insights.missing_data %}
+                    <div class="mt-4">
+                        <h6>Missing Data by Column</h6>
+                        <div class="row">
+                            {% for column, missing_count in file_insights.missing_data.items() %}
+                                {% if missing_count > 0 %}
+                                <div class="col-md-6 mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <span>{{ column }}</span>
+                                        <span class="text-warning">{{ missing_count }} missing</span>
+                                    </div>
+                                    <div class="progress" style="height: 5px;">
+                                        <div class="progress-bar bg-warning" 
+                                             style="width: {{ (missing_count / file_insights.row_count * 100)|round }}%"></div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Overall Recommendations -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i data-feather="check-square"></i> Recommendations
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Data Quality Improvements</h6>
+                        <ul>
+                            <li>Address missing values in key columns</li>
+                            <li>Remove or investigate duplicate records</li>
+                            <li>Standardize data formats across tables</li>
+                            <li>Validate data type consistency</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Schema Optimization</h6>
+                        <ul>
+                            <li>Implement suggested primary keys</li>
+                            <li>Create foreign key relationships</li>
+                            <li>Consider data normalization opportunities</li>
+                            <li>Optimize storage for large text fields</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -154,606 +521,14 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/api.js') }}"></script>
 <script src="{{ url_for('static', filename='js/analysis.js') }}"></script>
 <script>
     // Initialize analysis page
     document.addEventListener('DOMContentLoaded', function() {
         feather.replace();
         
-        // Get session ID from the page
-        const sessionId = document.getElementById('sessionId').value;
-        
         // Initialize any charts or interactive elements
         initializeAnalysis();
-        
-        // Load analysis results
-        loadAnalysisResults(sessionId);
     });
-
-    async function loadAnalysisResults(sessionId) {
-        try {
-            // Load session data
-            const response = await dataAPI.getSession(sessionId);
-            
-            if (response.status === 'success') {
-                const { session, results } = response;
-                
-                // Update page header with session info
-                updateSessionInfo(session);
-                
-                // Show analysis results if available
-                if (results && Object.keys(results).length > 0) {
-                    displayAnalysisResults(results);
-                    showAnalysisTabs();
-                } else {
-                    // No results yet, prompt user to run analysis
-                    showAnalysisPrompt(sessionId);
-                }
-            } else {
-                UIHelpers.showAlert('Failed to load session: ' + response.message, 'danger');
-            }
-        } catch (error) {
-            console.error('Error loading analysis:', error);
-            UIHelpers.showAlert('Error loading analysis results: ' + error.message, 'danger');
-        }
-    }
-
-    function updateSessionInfo(session) {
-        document.getElementById('sessionName').textContent = session.session_name;
-        document.getElementById('sessionDetails').textContent = 
-            `${session.file_count} files • Created ${UIHelpers.formatDateTime(session.created_at)}`;
-        
-        // Update summary cards
-        document.getElementById('totalFiles').textContent = session.file_count;
-        
-        // Show summary if we have file info
-        if (session.files && session.files.length > 0) {
-            document.getElementById('summaryCards').style.display = 'flex';
-            
-            let totalRows = 0;
-            let totalColumns = 0;
-            session.files.forEach(file => {
-                // These would be populated from actual analysis results
-                totalRows += Math.floor(Math.random() * 1000) + 100; // Placeholder
-                totalColumns += Math.floor(Math.random() * 20) + 5; // Placeholder
-            });
-            
-            document.getElementById('totalRows').textContent = totalRows.toLocaleString();
-            document.getElementById('totalColumns').textContent = totalColumns;
-            document.getElementById('qualityScore').textContent = '85%';
-        }
-    }
-
-    function showAnalysisPrompt(sessionId) {
-        const content = document.getElementById('analysisContent');
-        content.innerHTML = `
-            <div class="text-center py-5">
-                <i data-feather="play-circle" style="width: 64px; height: 64px;" class="text-primary mb-3"></i>
-                <h4>Ready to Analyze</h4>
-                <p class="text-muted mb-4">Your files have been uploaded successfully. Click the button below to start the analysis.</p>
-                <button class="btn btn-primary btn-lg" onclick="startAnalysis(${sessionId})">
-                    <i data-feather="zap"></i> Start Analysis
-                </button>
-            </div>
-        `;
-        feather.replace();
-    }
-
-    async function startAnalysis(sessionId) {
-        const content = document.getElementById('analysisContent');
-        UIHelpers.showLoading(content, 'Analyzing your data...');
-        
-        try {
-            const response = await dataAPI.analyzeSession(sessionId);
-            
-            if (response.status === 'success') {
-                UIHelpers.showAlert('Analysis completed successfully!', 'success');
-                displayAnalysisResults(response.results);
-                showAnalysisTabs();
-            } else {
-                UIHelpers.showAlert('Analysis failed: ' + response.message, 'danger');
-            }
-        } catch (error) {
-            console.error('Analysis error:', error);
-            UIHelpers.showAlert('Analysis failed: ' + error.message, 'danger');
-        }
-    }
-
-    function displayAnalysisResults(results) {
-        // Hide loading content
-        document.getElementById('analysisContent').style.display = 'none';
-        
-        // Display data types
-        if (results.data_types) {
-            displayDataTypes(results.data_types);
-        }
-        
-        // Display patterns
-        if (results.patterns) {
-            displayPatterns(results.patterns);
-        }
-        
-        // Display relationships
-        if (results.relationships) {
-            displayRelationships(results.relationships);
-        }
-        
-        // Display insights
-        if (results.insights) {
-            displayInsights(results.insights);
-        }
-    }
-
-    function displayDataTypes(dataTypes) {
-        const container = document.getElementById('dataTypesContent');
-        let html = '';
-        
-        for (const [filename, fileResults] of Object.entries(dataTypes)) {
-            html += `
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i data-feather="file-text"></i> ${filename}
-                            <span class="badge bg-secondary ms-2">${Object.keys(fileResults).length} columns</span>
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Column</th>
-                                        <th>Inferred Type</th>
-                                        <th>Confidence</th>
-                                        <th>Unique Values</th>
-                                        <th>Missing</th>
-                                        <th>Sample Values</th>
-                                    </tr>
-                                </thead>
-                                <tbody>`;
-            
-            for (const [column, analysis] of Object.entries(fileResults)) {
-                html += `
-                    <tr>
-                        <td><strong>${column}</strong></td>
-                        <td>
-                            <span class="badge bg-primary">${analysis.inferred_type}</span>
-                            ${analysis.characteristics ? analysis.characteristics.slice(0,2).map(char => 
-                                `<span class="badge bg-secondary me-1">${char}</span>`
-                            ).join('') : ''}
-                        </td>
-                        <td>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar" style="width: ${Math.round(analysis.confidence * 100)}%">
-                                    ${(analysis.confidence * 100).toFixed(1)}%
-                                </div>
-                            </div>
-                        </td>
-                        <td>${analysis.unique_count || 0}</td>
-                        <td>
-                            ${analysis.null_count > 0 ? 
-                                `<span class="text-warning">${analysis.null_count}</span>` : 
-                                `<span class="text-success">0</span>`}
-                        </td>
-                        <td>
-                            <div class="small text-muted">
-                                ${analysis.sample_values ? analysis.sample_values.slice(0,3).map(value => 
-                                    `<code>${value}</code>`
-                                ).join(', ') : ''}
-                            </div>
-                        </td>
-                    </tr>`;
-            }
-            
-            html += `
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>`;
-        }
-        
-        container.innerHTML = html;
-        feather.replace();
-    }
-
-    function displayPatterns(patterns) {
-        const container = document.getElementById('patternsContent');
-        let html = '';
-        
-        for (const [filename, patternData] of Object.entries(patterns)) {
-            html += `
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i data-feather="trending-up"></i> ${filename} - Pattern Analysis
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        ${patternData.outliers ? displayOutliers(patternData.outliers) : ''}
-                        ${patternData.data_quality ? displayDataQuality(patternData.data_quality) : ''}
-                        ${patternData.correlations ? displayCorrelations(patternData.correlations) : ''}
-                    </div>
-                </div>`;
-        }
-        
-        container.innerHTML = html || '<div class="alert alert-info">No patterns detected in the uploaded files.</div>';
-        feather.replace();
-    }
-
-    function displayRelationships(relationships) {
-        const container = document.getElementById('relationshipsContent');
-        let html = '';
-        
-        if (!relationships || Object.keys(relationships).length === 0) {
-            html = '<div class="alert alert-info">No relationships detected between files.</div>';
-        } else {
-            // Display potential keys
-            if (relationships.potential_keys && Object.keys(relationships.potential_keys).length > 0) {
-                html += `
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <i data-feather="key"></i> Potential Keys
-                            </h5>
-                        </div>
-                        <div class="card-body">`;
-                
-                for (const [filename, keys] of Object.entries(relationships.potential_keys)) {
-                    if (keys.length > 0) {
-                        html += `
-                            <h6>${filename}</h6>
-                            <ul class="list-group list-group-flush mb-3">`;
-                        
-                        keys.forEach(key => {
-                            html += `
-                                <li class="list-group-item">
-                                    <strong>${key.column}</strong> 
-                                    <span class="badge bg-primary ms-2">${(key.uniqueness * 100).toFixed(1)}% unique</span>
-                                    <div class="small text-muted">${key.key_type || key.reason || 'Potential identifier'}</div>
-                                </li>`;
-                        });
-                        
-                        html += `</ul>`;
-                    }
-                }
-                
-                html += `</div></div>`;
-            }
-            
-            // Display foreign key candidates
-            if (relationships.foreign_key_candidates && Object.keys(relationships.foreign_key_candidates).length > 0) {
-                html += `
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <i data-feather="link-2"></i> Foreign Key Candidates
-                            </h5>
-                        </div>
-                        <div class="card-body">`;
-                
-                for (const [filename, fks] of Object.entries(relationships.foreign_key_candidates)) {
-                    if (fks.length > 0) {
-                        html += `<h6>${filename}</h6><div class="row">`;
-                        
-                        fks.forEach(fk => {
-                            html += `
-                                <div class="col-md-6 mb-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
-                                            <h6 class="card-title">${fk.source_column || fk.column}</h6>
-                                            <p class="card-text">
-                                                <strong>Matches:</strong> ${fk.target_table}.${fk.target_column}<br>
-                                                <strong>Match Rate:</strong> ${((fk.referential_integrity || fk.match_percentage || 0) * 100).toFixed(1)}%
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>`;
-                        });
-                        
-                        html += `</div>`;
-                    }
-                }
-                
-                html += `</div></div>`;
-            }
-            
-            // Display join suggestions
-            if (relationships.join_suggestions && relationships.join_suggestions.length > 0) {
-                html += `
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <i data-feather="shuffle"></i> Join Suggestions
-                            </h5>
-                        </div>
-                        <div class="card-body">`;
-                
-                relationships.join_suggestions.forEach(suggestion => {
-                    html += `
-                        <div class="border rounded p-3 mb-3">
-                            <h6>
-                                <span class="badge bg-success">Recommended</span>
-                                ${suggestion.table1} ⟷ ${suggestion.table2}
-                            </h6>
-                            <p>
-                                <strong>Join on:</strong> 
-                                ${suggestion.table1}.${suggestion.join_column || suggestion.column1 || 'unknown'} = ${suggestion.table2}.${suggestion.join_column || suggestion.column2 || 'unknown'}
-                            </p>
-                            <div class="small text-muted">
-                                <strong>Confidence:</strong> ${((suggestion.confidence || 0) * 100).toFixed(1)}% | 
-                                <strong>Type:</strong> ${suggestion.recommended_join_type || suggestion.join_type || 'unknown'}
-                            </div>
-                        </div>`;
-                });
-                
-                html += `</div></div>`;
-            }
-            
-            // If none of the specific sections had data, show raw data
-            if (!html) {
-                html = `
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <i data-feather="link"></i> Relationship Analysis Results
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <pre class="bg-light p-3 rounded">${JSON.stringify(relationships, null, 2)}</pre>
-                        </div>
-                    </div>`;
-            }
-        }
-        
-        container.innerHTML = html;
-        feather.replace();
-    }
-
-    function displayInsights(insights) {
-        const container = document.getElementById('insightsContent');
-        let html = '';
-        
-        if (!insights || Object.keys(insights).length === 0) {
-            html = '<div class="alert alert-info">No insights generated for this analysis.</div>';
-        } else {
-            // Insights are organized by filename
-            for (const [filename, fileInsights] of Object.entries(insights)) {
-                if (fileInsights && Object.keys(fileInsights).length > 0) {
-                    html += `
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5 class="mb-0">
-                                    <i data-feather="info"></i> ${filename} - Data Insights
-                                </h5>
-                            </div>
-                            <div class="card-body">`;
-                    
-                    // Display summary statistics
-                    if (fileInsights.summary) {
-                        html += `
-                            <div class="mb-4">
-                                <h6>File Summary</h6>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="text-center">
-                                            <div class="h4 text-primary">${fileInsights.summary.rows?.toLocaleString() || 'N/A'}</div>
-                                            <div class="small text-muted">Rows</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="text-center">
-                                            <div class="h4 text-success">${fileInsights.summary.columns || 'N/A'}</div>
-                                            <div class="small text-muted">Columns</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="text-center">
-                                            <div class="h4 text-warning">${fileInsights.summary.memory_usage || 'N/A'}</div>
-                                            <div class="small text-muted">Memory</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="text-center">
-                                            <div class="h4 text-info">${fileInsights.summary.missing_data_percentage?.toFixed(1) || 'N/A'}%</div>
-                                            <div class="small text-muted">Missing Data</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`;
-                    }
-                    
-                    // Display key insights
-                    if (fileInsights.key_insights && fileInsights.key_insights.length > 0) {
-                        html += `
-                            <div class="mb-4">
-                                <h6>Key Insights</h6>
-                                <ul class="list-group list-group-flush">`;
-                        
-                        fileInsights.key_insights.forEach(insight => {
-                            html += `
-                                <li class="list-group-item">
-                                    <i data-feather="check-circle" class="text-success me-2"></i>
-                                    ${insight}
-                                </li>`;
-                        });
-                        
-                        html += `</ul></div>`;
-                    }
-                    
-                    // Display recommendations  
-                    if (fileInsights.recommendations && fileInsights.recommendations.length > 0) {
-                        html += `
-                            <div class="mb-4">
-                                <h6>Recommendations</h6>
-                                <ul class="list-group list-group-flush">`;
-                        
-                        fileInsights.recommendations.forEach(rec => {
-                            html += `
-                                <li class="list-group-item">
-                                    <i data-feather="arrow-right" class="text-primary me-2"></i>
-                                    ${rec}
-                                </li>`;
-                        });
-                        
-                        html += `</ul></div>`;
-                    }
-                    
-                    // Display data quality issues
-                    if (fileInsights.data_quality_issues && fileInsights.data_quality_issues.length > 0) {
-                        html += `
-                            <div class="mb-4">
-                                <h6>Data Quality Issues</h6>
-                                <ul class="list-group list-group-flush">`;
-                        
-                        fileInsights.data_quality_issues.forEach(issue => {
-                            html += `
-                                <li class="list-group-item">
-                                    <i data-feather="alert-triangle" class="text-warning me-2"></i>
-                                    ${issue}
-                                </li>`;
-                        });
-                        
-                        html += `</ul></div>`;
-                    }
-                    
-                    html += `</div></div>`;
-                }
-            }
-            
-            // If no structured insights, show raw data
-            if (!html) {
-                html = `
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <i data-feather="info"></i> Analysis Insights
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <pre class="bg-light p-3 rounded">${JSON.stringify(insights, null, 2)}</pre>
-                        </div>
-                    </div>`;
-            }
-        }
-        
-        container.innerHTML = html;
-        feather.replace();
-    }
-
-    function displayOutliers(outliers) {
-        let html = `
-            <div class="mb-4">
-                <h6><i data-feather="alert-triangle" class="text-warning"></i> Outliers Detected</h6>
-                <div class="row">`;
-        
-        for (const [column, outlierInfo] of Object.entries(outliers)) {
-            html += `
-                <div class="col-md-6 mb-3">
-                    <div class="border rounded p-3">
-                        <h6 class="mb-2">${column}</h6>`;
-            
-            for (const [method, details] of Object.entries(outlierInfo)) {
-                html += `
-                    <div class="small mb-2">
-                        <strong>${method.charAt(0).toUpperCase() + method.slice(1)}:</strong> 
-                        ${details.count} outliers (${details.percentage.toFixed(1)}%)
-                    </div>`;
-            }
-            
-            html += `
-                    </div>
-                </div>`;
-        }
-        
-        html += `
-                </div>
-            </div>`;
-        
-        return html;
-    }
-
-    function displayDataQuality(dataQuality) {
-        return `
-            <div class="mb-4">
-                <h6><i data-feather="shield" class="text-info"></i> Data Quality Assessment</h6>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card bg-body-secondary">
-                            <div class="card-body">
-                                <h6>Completeness</h6>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" style="width: ${dataQuality.completeness?.score || 0}%">
-                                        ${(dataQuality.completeness?.score || 0).toFixed(1)}%
-                                    </div>
-                                </div>
-                                <small class="text-muted">
-                                    ${dataQuality.completeness?.missing_cells || 0} missing cells
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card bg-body-secondary">
-                            <div class="card-body">
-                                <h6>Duplicates</h6>
-                                <p class="h5 text-warning mb-1">${dataQuality.consistency?.duplicate_rows?.count || 0}</p>
-                                <small class="text-muted">
-                                    ${(dataQuality.consistency?.duplicate_rows?.percentage || 0).toFixed(1)}% of rows
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-    }
-
-    function displayCorrelations(correlations) {
-        if (!correlations.strong_correlations || correlations.strong_correlations.length === 0) {
-            return '';
-        }
-        
-        let html = `
-            <div class="mb-4">
-                <h6><i data-feather="activity" class="text-success"></i> Strong Correlations</h6>
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>Column 1</th>
-                                <th>Column 2</th>
-                                <th>Correlation</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-        
-        correlations.strong_correlations.forEach(corr => {
-            html += `
-                <tr>
-                    <td>${corr.column1}</td>
-                    <td>${corr.column2}</td>
-                    <td>
-                        <span class="badge ${Math.abs(corr.correlation) > 0.8 ? 'bg-success' : 'bg-warning'}">
-                            ${corr.correlation.toFixed(3)}
-                        </span>
-                    </td>
-                </tr>`;
-        });
-        
-        html += `
-                        </tbody>
-                    </table>
-                </div>
-            </div>`;
-        
-        return html;
-    }
-
-    function showAnalysisTabs() {
-        // Show the tabs and content area
-        document.getElementById('analysisTab').style.display = 'flex';
-        document.getElementById('analysisTabContent').style.display = 'block';
-    }
 </script>
 {% endblock %}

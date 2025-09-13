@@ -1,0 +1,667 @@
+{
+    "data_types": {
+        "uploads/9_Customers.xlsx": {
+            "CustomerID": {
+                "column_name": "CustomerID",
+                "pandas_dtype": "int64",
+                "inferred_type": "integer",
+                "confidence": 1.0,
+                "characteristics": [
+                    "unique_values",
+                    "no_missing_values",
+                    "range: 1.00 to 50.00",
+                    "mean: 25.50"
+                ],
+                "sample_values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "null_count": 0,
+                "unique_count": 50,
+                "total_count": 50
+            },
+            "Name": {
+                "column_name": "Name",
+                "pandas_dtype": "object",
+                "inferred_type": "unique_identifier",
+                "confidence": 0.9,
+                "characteristics": [
+                    "unique_values",
+                    "no_missing_values"
+                ],
+                "sample_values": [
+                    "David Richards",
+                    "Russell Wood",
+                    "Heather Morgan",
+                    "Doris Brown",
+                    "Brian Horton"
+                ],
+                "null_count": 0,
+                "unique_count": 50,
+                "total_count": 50
+            },
+            "Email": {
+                "column_name": "Email",
+                "pandas_dtype": "object",
+                "inferred_type": "email",
+                "confidence": 1.0,
+                "characteristics": [
+                    "unique_values",
+                    "no_missing_values"
+                ],
+                "sample_values": [
+                    "ebony08@gmail.com",
+                    "erichopkins@gmail.com",
+                    "suewebb@hotmail.com",
+                    "bscott@petersen-vincent.biz",
+                    "carlturner@roach-whitaker.org"
+                ],
+                "null_count": 0,
+                "unique_count": 50,
+                "total_count": 50
+            },
+            "City": {
+                "column_name": "City",
+                "pandas_dtype": "object",
+                "inferred_type": "unique_identifier",
+                "confidence": 0.9,
+                "characteristics": [
+                    "unique_values",
+                    "no_missing_values"
+                ],
+                "sample_values": [
+                    "West Rachelfurt",
+                    "Martintown",
+                    "Port Tiffany",
+                    "Leeside",
+                    "Medinafort"
+                ],
+                "null_count": 0,
+                "unique_count": 50,
+                "total_count": 50
+            }
+        },
+        "uploads/9_Orders.xlsx": {
+            "OrderID": {
+                "column_name": "OrderID",
+                "pandas_dtype": "int64",
+                "inferred_type": "integer",
+                "confidence": 1.0,
+                "characteristics": [
+                    "unique_values",
+                    "no_missing_values",
+                    "range: 1.00 to 100.00",
+                    "mean: 50.50"
+                ],
+                "sample_values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "null_count": 0,
+                "unique_count": 100,
+                "total_count": 100
+            },
+            "CustomerID": {
+                "column_name": "CustomerID",
+                "pandas_dtype": "int64",
+                "inferred_type": "integer",
+                "confidence": 1.0,
+                "characteristics": [
+                    "no_missing_values",
+                    "range: 1.00 to 50.00",
+                    "mean: 24.77"
+                ],
+                "sample_values": [
+                    16,
+                    47,
+                    44,
+                    41,
+                    35
+                ],
+                "null_count": 0,
+                "unique_count": 45,
+                "total_count": 100
+            },
+            "Product": {
+                "column_name": "Product",
+                "pandas_dtype": "object",
+                "inferred_type": "categorical",
+                "confidence": 0.9,
+                "characteristics": [
+                    "no_missing_values",
+                    "most_common: Phone (18 occurrences)"
+                ],
+                "sample_values": [
+                    "Phone",
+                    "Phone",
+                    "Laptop",
+                    "Tablet",
+                    "Headphones"
+                ],
+                "null_count": 0,
+                "unique_count": 7,
+                "total_count": 100
+            },
+            "Quantity": {
+                "column_name": "Quantity",
+                "pandas_dtype": "int64",
+                "inferred_type": "integer",
+                "confidence": 1.0,
+                "characteristics": [
+                    "no_missing_values",
+                    "range: 1.00 to 5.00",
+                    "mean: 2.96"
+                ],
+                "sample_values": [
+                    4,
+                    4,
+                    2,
+                    2,
+                    1
+                ],
+                "null_count": 0,
+                "unique_count": 5,
+                "total_count": 100
+            },
+            "OrderDate": {
+                "column_name": "OrderDate",
+                "pandas_dtype": "datetime64[ns]",
+                "inferred_type": "integer",
+                "confidence": 1.0,
+                "characteristics": [
+                    "no_missing_values",
+                    "range: 1725062400000000000.00 to 1755820800000000000.00",
+                    "mean: 1740542688000000000.00"
+                ],
+                "sample_values": [
+                    "2024-10-05T00:00:00",
+                    "2025-01-12T00:00:00",
+                    "2025-07-22T00:00:00",
+                    "2025-07-28T00:00:00",
+                    "2025-04-11T00:00:00"
+                ],
+                "null_count": 0,
+                "unique_count": 88,
+                "total_count": 100
+            }
+        }
+    },
+    "patterns": {
+        "uploads/9_Customers.xlsx": {
+            "outliers": {
+                "CustomerID": {
+                    "z_score": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    },
+                    "iqr": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "lower_bound": -23.5,
+                        "upper_bound": 74.5,
+                        "values": []
+                    },
+                    "modified_z": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    }
+                }
+            },
+            "patterns": {
+                "sequences": {
+                    "CustomerID": {
+                        "type": "arithmetic",
+                        "common_difference": 1.0,
+                        "consistency": 1.0
+                    }
+                },
+                "repeating_values": {
+                    "Name": {
+                        "total_values": 50,
+                        "unique_values": 50,
+                        "uniqueness_ratio": 1.0,
+                        "most_common": {
+                            "David Richards": 1,
+                            "Russell Wood": 1,
+                            "Heather Morgan": 1,
+                            "Doris Brown": 1,
+                            "Brian Horton": 1
+                        },
+                        "repetition_score": 0.02,
+                        "autocorrelation": -0.013776396315290096
+                    },
+                    "Email": {
+                        "total_values": 50,
+                        "unique_values": 50,
+                        "uniqueness_ratio": 1.0,
+                        "most_common": {
+                            "ebony08@gmail.com": 1,
+                            "erichopkins@gmail.com": 1,
+                            "suewebb@hotmail.com": 1,
+                            "bscott@petersen-vincent.biz": 1,
+                            "carlturner@roach-whitaker.org": 1
+                        },
+                        "repetition_score": 0.02,
+                        "autocorrelation": -0.10921512081379936
+                    },
+                    "City": {
+                        "total_values": 50,
+                        "unique_values": 50,
+                        "uniqueness_ratio": 1.0,
+                        "most_common": {
+                            "West Rachelfurt": 1,
+                            "Martintown": 1,
+                            "Port Tiffany": 1,
+                            "Leeside": 1,
+                            "Medinafort": 1
+                        },
+                        "repetition_score": 0.02,
+                        "autocorrelation": -0.0718315654914767
+                    }
+                },
+                "missing_data": {
+                    "by_column": {},
+                    "rows_with_multiple_missing": {
+                        "count": 0,
+                        "percentage": 0.0
+                    }
+                },
+                "clusters": {}
+            },
+            "correlations": {},
+            "data_quality": {
+                "completeness": {
+                    "score": 100.0,
+                    "missing_cells": 0,
+                    "total_cells": 200
+                },
+                "consistency": {
+                    "duplicate_rows": {
+                        "count": 0,
+                        "percentage": 0.0
+                    },
+                    "zero_variance_columns": [],
+                    "mixed_type_columns": []
+                }
+            },
+            "distributions": {
+                "CustomerID": {
+                    "mean": 25.5,
+                    "median": 25.5,
+                    "std": 14.577379737113251,
+                    "skewness": 0.0,
+                    "kurtosis": -1.2009603841536614,
+                    "min": 1,
+                    "max": 50,
+                    "quartiles": {
+                        "q1": 13.25,
+                        "q2": 25.5,
+                        "q3": 37.75
+                    },
+                    "normality_test": {
+                        "p_value": 0.0580918621773503,
+                        "is_normal": true
+                    }
+                }
+            }
+        },
+        "uploads/9_Orders.xlsx": {
+            "outliers": {
+                "OrderID": {
+                    "z_score": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    },
+                    "iqr": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "lower_bound": -48.5,
+                        "upper_bound": 149.5,
+                        "values": []
+                    },
+                    "modified_z": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    }
+                },
+                "CustomerID": {
+                    "z_score": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    },
+                    "iqr": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "lower_bound": -20.375,
+                        "upper_bound": 68.625,
+                        "values": []
+                    },
+                    "modified_z": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    }
+                },
+                "Quantity": {
+                    "z_score": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    },
+                    "iqr": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "lower_bound": -1.0,
+                        "upper_bound": 7.0,
+                        "values": []
+                    },
+                    "modified_z": {
+                        "count": 0,
+                        "percentage": 0.0,
+                        "values": []
+                    }
+                }
+            },
+            "patterns": {
+                "sequences": {
+                    "OrderID": {
+                        "type": "arithmetic",
+                        "common_difference": 1.0,
+                        "consistency": 1.0
+                    }
+                },
+                "repeating_values": {
+                    "Product": {
+                        "total_values": 100,
+                        "unique_values": 7,
+                        "uniqueness_ratio": 0.07,
+                        "most_common": {
+                            "Phone": 18,
+                            "Tablet": 17,
+                            "Keyboard": 17,
+                            "Laptop": 15,
+                            "Monitor": 14
+                        },
+                        "repetition_score": 0.1528,
+                        "autocorrelation": -0.2063458262350939
+                    }
+                },
+                "missing_data": {
+                    "by_column": {},
+                    "rows_with_multiple_missing": {
+                        "count": 0,
+                        "percentage": 0.0
+                    }
+                },
+                "clusters": {
+                    "OrderID_vs_Quantity": {
+                        "n_clusters": 8,
+                        "n_noise_points": 3,
+                        "noise_percentage": 3.0,
+                        "silhouette_score": 0.2764690391847999
+                    },
+                    "CustomerID_vs_Quantity": {
+                        "n_clusters": 8,
+                        "n_noise_points": 8,
+                        "noise_percentage": 8.0,
+                        "silhouette_score": 0.2136043100861239
+                    }
+                }
+            },
+            "correlations": {
+                "strong_correlations": [],
+                "correlation_matrix": {
+                    "OrderID": {
+                        "OrderID": 1.0,
+                        "CustomerID": -0.17019805197246196,
+                        "Quantity": 0.012495427401627564
+                    },
+                    "CustomerID": {
+                        "OrderID": -0.17019805197246196,
+                        "CustomerID": 1.0,
+                        "Quantity": -0.0976628468254827
+                    },
+                    "Quantity": {
+                        "OrderID": 0.012495427401627564,
+                        "CustomerID": -0.0976628468254827,
+                        "Quantity": 1.0
+                    }
+                }
+            },
+            "data_quality": {
+                "completeness": {
+                    "score": 100.0,
+                    "missing_cells": 0,
+                    "total_cells": 500
+                },
+                "consistency": {
+                    "duplicate_rows": {
+                        "count": 0,
+                        "percentage": 0.0
+                    },
+                    "zero_variance_columns": [],
+                    "mixed_type_columns": []
+                }
+            },
+            "distributions": {
+                "OrderID": {
+                    "mean": 50.5,
+                    "median": 50.5,
+                    "std": 29.011491975882016,
+                    "skewness": 0.0,
+                    "kurtosis": -1.2002400240024003,
+                    "min": 1,
+                    "max": 100,
+                    "quartiles": {
+                        "q1": 25.75,
+                        "q2": 50.5,
+                        "q3": 75.25
+                    },
+                    "normality_test": {
+                        "p_value": 0.0017217221937625906,
+                        "is_normal": false
+                    }
+                },
+                "CustomerID": {
+                    "mean": 24.77,
+                    "median": 24.5,
+                    "std": 13.913771246611406,
+                    "skewness": 0.09500809511615867,
+                    "kurtosis": -1.0958861872607337,
+                    "min": 1,
+                    "max": 50,
+                    "quartiles": {
+                        "q1": 13.0,
+                        "q2": 24.5,
+                        "q3": 35.25
+                    },
+                    "normality_test": {
+                        "p_value": 0.003958737137889509,
+                        "is_normal": false
+                    }
+                },
+                "Quantity": {
+                    "mean": 2.96,
+                    "median": 3.0,
+                    "std": 1.4489285487538506,
+                    "skewness": 0.02986025036696584,
+                    "kurtosis": -1.3530607128951573,
+                    "min": 1,
+                    "max": 5,
+                    "quartiles": {
+                        "q1": 2.0,
+                        "q2": 3.0,
+                        "q3": 4.0
+                    },
+                    "normality_test": {
+                        "p_value": 1.9649908419556408e-07,
+                        "is_normal": false
+                    }
+                }
+            }
+        }
+    },
+    "insights": {
+        "uploads/9_Customers.xlsx": {
+            "row_count": 50,
+            "column_count": 4,
+            "memory_usage": 11438,
+            "missing_data": {
+                "CustomerID": 0,
+                "Name": 0,
+                "Email": 0,
+                "City": 0
+            },
+            "duplicate_rows": 0,
+            "numeric_columns": [
+                "CustomerID"
+            ],
+            "text_columns": [
+                "Name",
+                "Email",
+                "City"
+            ],
+            "datetime_columns": []
+        },
+        "uploads/9_Orders.xlsx": {
+            "row_count": 100,
+            "column_count": 5,
+            "memory_usage": 9708,
+            "missing_data": {
+                "OrderID": 0,
+                "CustomerID": 0,
+                "Product": 0,
+                "Quantity": 0,
+                "OrderDate": 0
+            },
+            "duplicate_rows": 0,
+            "numeric_columns": [
+                "OrderID",
+                "CustomerID",
+                "Quantity"
+            ],
+            "text_columns": [
+                "Product"
+            ],
+            "datetime_columns": [
+                "OrderDate"
+            ]
+        }
+    },
+    "relationships": {
+        "potential_keys": {
+            "uploads/9_Customers.xlsx": [
+                {
+                    "column": "CustomerID",
+                    "key_type": "auto_increment",
+                    "uniqueness": 1.0,
+                    "completeness": 1.0,
+                    "score": 115.0
+                },
+                {
+                    "column": "Name",
+                    "key_type": "unique_identifier",
+                    "uniqueness": 1.0,
+                    "completeness": 1.0,
+                    "score": 80.0
+                },
+                {
+                    "column": "Email",
+                    "key_type": "unique_identifier",
+                    "uniqueness": 1.0,
+                    "completeness": 1.0,
+                    "score": 80.0
+                },
+                {
+                    "column": "City",
+                    "key_type": "unique_identifier",
+                    "uniqueness": 1.0,
+                    "completeness": 1.0,
+                    "score": 80.0
+                }
+            ],
+            "uploads/9_Orders.xlsx": [
+                {
+                    "column": "OrderID",
+                    "key_type": "auto_increment",
+                    "uniqueness": 1.0,
+                    "completeness": 1.0,
+                    "score": 115.0
+                },
+                {
+                    "column": "OrderDate",
+                    "key_type": "unknown",
+                    "uniqueness": 0.88,
+                    "completeness": 1.0,
+                    "score": 65.2
+                }
+            ]
+        },
+        "relationships": [
+            {
+                "column": "CustomerID",
+                "table1": "uploads/9_Customers.xlsx",
+                "table2": "uploads/9_Orders.xlsx",
+                "strength": 0.9,
+                "relationship_type": "strong_overlap",
+                "jaccard_similarity": 0.9,
+                "values_in_common": 45,
+                "unique_to_table1": 5,
+                "unique_to_table2": 0,
+                "containment_1_in_2": 0.9,
+                "containment_2_in_1": 1.0
+            }
+        ],
+        "join_suggestions": [
+            {
+                "table1": "uploads/9_Customers.xlsx",
+                "table2": "uploads/9_Orders.xlsx",
+                "join_column": "CustomerID",
+                "recommended_join_type": "CROSS JOIN (with caution)",
+                "confidence": 0.2,
+                "reasoning": "Weak relationship detected, consider if join is necessary",
+                "relationship_strength": 0.9,
+                "expected_result_size": "very_large"
+            }
+        ],
+        "foreign_key_candidates": [
+            {
+                "source_table": "uploads/9_Customers.xlsx",
+                "source_column": "CustomerID",
+                "target_table": "uploads/9_Orders.xlsx",
+                "target_column": "OrderID",
+                "score": 78.0,
+                "referential_integrity": 1.0,
+                "value_overlap": 0.5
+            },
+            {
+                "source_table": "uploads/9_Orders.xlsx",
+                "source_column": "Quantity",
+                "target_table": "uploads/9_Customers.xlsx",
+                "target_column": "CustomerID",
+                "score": 64.0,
+                "referential_integrity": 1.0,
+                "value_overlap": 0.1
+            }
+        ]
+    },
+    "summary": {
+        "total_files": 2,
+        "total_rows": 150,
+        "total_columns": 9,
+        "common_patterns": [],
+        "potential_keys": [],
+        "data_quality_score": 100.0
+    }
+}

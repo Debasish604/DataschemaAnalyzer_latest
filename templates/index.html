@@ -15,7 +15,7 @@
                             Upload multiple database files and get AI-powered insights about data types, 
                             patterns, relationships, and potential optimizations.
                         </p>
-                        <a href="{{ url_for('upload_page') }}" class="btn btn-light btn-lg">
+                        <a href="{{ url_for('upload_files') }}" class="btn btn-light btn-lg">
                             <i data-feather="upload"></i> Start Analysis
                         </a>
                     </div>
@@ -94,11 +94,39 @@
                     <i data-feather="clock"></i> Recent Analysis Sessions
                 </h5>
             </div>
-            <div class="card-body" id="recentSessions">
-                <div class="d-flex align-items-center justify-content-center py-4">
-                    <div class="spinner-border text-primary me-2" role="status"></div>
-                    <span>Loading recent sessions...</span>
-                </div>
+            <div class="card-body">
+                {% if recent_sessions %}
+                    {% for session in recent_sessions %}
+                        <div class="d-flex justify-content-between align-items-center mb-3 p-2 border rounded">
+                            <div>
+                                <h6 class="mb-1">{{ session.session_name }}</h6>
+                                <small class="text-muted">
+                                    {{ session.file_count }} files • 
+                                    {{ session.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                            <div class="btn-group-vertical btn-group-sm">
+                                <a href="{{ url_for('view_session', session_id=session.id) }}" 
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i data-feather="eye"></i>
+                                </a>
+                                <form method="POST" action="{{ url_for('delete_session', session_id=session.id) }}" 
+                                      style="display: inline;" 
+                                      onsubmit="return confirm('Are you sure you want to delete this session?')">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i data-feather="trash-2"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted text-center py-3">
+                        <i data-feather="inbox"></i><br>
+                        No recent sessions.<br>
+                        <a href="{{ url_for('upload_files') }}">Start your first analysis</a>
+                    </p>
+                {% endif %}
             </div>
         </div>
 
@@ -191,7 +219,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/api.js') }}"></script>
 <script>
     feather.replace();
 </script>

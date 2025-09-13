@@ -1,0 +1,2902 @@
+[
+  {
+    "c": {
+      "Email": "ebony08@gmail.com",
+      "CustomerID": "1",
+      "City": "West Rachelfurt",
+      "Name": "David Richards"
+    },
+    "r": [
+      {
+        "Email": "ebony08@gmail.com",
+        "CustomerID": "1",
+        "City": "West Rachelfurt",
+        "Name": "David Richards"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 2,
+        "OrderID": "36",
+        "OrderDate": "2024-11-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 2,
+      "OrderID": "36",
+      "OrderDate": "2024-11-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "erichopkins@gmail.com",
+      "CustomerID": "2",
+      "City": "Martintown",
+      "Name": "Russell Wood"
+    },
+    "r": [
+      {
+        "Email": "erichopkins@gmail.com",
+        "CustomerID": "2",
+        "City": "Martintown",
+        "Name": "Russell Wood"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 3,
+        "OrderID": "92",
+        "OrderDate": "2025-04-13 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 3,
+      "OrderID": "92",
+      "OrderDate": "2025-04-13 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "suewebb@hotmail.com",
+      "CustomerID": "3",
+      "City": "Port Tiffany",
+      "Name": "Heather Morgan"
+    },
+    "r": [
+      {
+        "Email": "suewebb@hotmail.com",
+        "CustomerID": "3",
+        "City": "Port Tiffany",
+        "Name": "Heather Morgan"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 1,
+        "OrderID": "59",
+        "OrderDate": "2025-04-17 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 1,
+      "OrderID": "59",
+      "OrderDate": "2025-04-17 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "suewebb@hotmail.com",
+      "CustomerID": "3",
+      "City": "Port Tiffany",
+      "Name": "Heather Morgan"
+    },
+    "r": [
+      {
+        "Email": "suewebb@hotmail.com",
+        "CustomerID": "3",
+        "City": "Port Tiffany",
+        "Name": "Heather Morgan"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 2,
+        "OrderID": "77",
+        "OrderDate": "2025-02-07 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 2,
+      "OrderID": "77",
+      "OrderDate": "2025-02-07 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "suewebb@hotmail.com",
+      "CustomerID": "3",
+      "City": "Port Tiffany",
+      "Name": "Heather Morgan"
+    },
+    "r": [
+      {
+        "Email": "suewebb@hotmail.com",
+        "CustomerID": "3",
+        "City": "Port Tiffany",
+        "Name": "Heather Morgan"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 3,
+        "OrderID": "87",
+        "OrderDate": "2025-07-14 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 3,
+      "OrderID": "87",
+      "OrderDate": "2025-07-14 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "bscott@petersen-vincent.biz",
+      "CustomerID": "4",
+      "City": "Leeside",
+      "Name": "Doris Brown"
+    },
+    "r": [
+      {
+        "Email": "bscott@petersen-vincent.biz",
+        "CustomerID": "4",
+        "City": "Leeside",
+        "Name": "Doris Brown"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 5,
+        "OrderID": "26",
+        "OrderDate": "2025-03-21 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 5,
+      "OrderID": "26",
+      "OrderDate": "2025-03-21 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "bscott@petersen-vincent.biz",
+      "CustomerID": "4",
+      "City": "Leeside",
+      "Name": "Doris Brown"
+    },
+    "r": [
+      {
+        "Email": "bscott@petersen-vincent.biz",
+        "CustomerID": "4",
+        "City": "Leeside",
+        "Name": "Doris Brown"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 2,
+        "OrderID": "44",
+        "OrderDate": "2025-04-29 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 2,
+      "OrderID": "44",
+      "OrderDate": "2025-04-29 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "carlturner@roach-whitaker.org",
+      "CustomerID": "5",
+      "City": "Medinafort",
+      "Name": "Brian Horton"
+    },
+    "r": [
+      {
+        "Email": "carlturner@roach-whitaker.org",
+        "CustomerID": "5",
+        "City": "Medinafort",
+        "Name": "Brian Horton"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 5,
+        "OrderID": "23",
+        "OrderDate": "2025-02-06 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 5,
+      "OrderID": "23",
+      "OrderDate": "2025-02-06 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "carlturner@roach-whitaker.org",
+      "CustomerID": "5",
+      "City": "Medinafort",
+      "Name": "Brian Horton"
+    },
+    "r": [
+      {
+        "Email": "carlturner@roach-whitaker.org",
+        "CustomerID": "5",
+        "City": "Medinafort",
+        "Name": "Brian Horton"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 4,
+        "OrderID": "55",
+        "OrderDate": "2025-02-12 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 4,
+      "OrderID": "55",
+      "OrderDate": "2025-02-12 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dmarshall@gmail.com",
+      "CustomerID": "6",
+      "City": "Taylorfort",
+      "Name": "Kelly Barnett"
+    },
+    "r": [
+      {
+        "Email": "dmarshall@gmail.com",
+        "CustomerID": "6",
+        "City": "Taylorfort",
+        "Name": "Kelly Barnett"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 1,
+        "OrderID": "89",
+        "OrderDate": "2025-06-15 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 1,
+      "OrderID": "89",
+      "OrderDate": "2025-06-15 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dmarshall@gmail.com",
+      "CustomerID": "6",
+      "City": "Taylorfort",
+      "Name": "Kelly Barnett"
+    },
+    "r": [
+      {
+        "Email": "dmarshall@gmail.com",
+        "CustomerID": "6",
+        "City": "Taylorfort",
+        "Name": "Kelly Barnett"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 5,
+        "OrderID": "93",
+        "OrderDate": "2024-09-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 5,
+      "OrderID": "93",
+      "OrderDate": "2024-09-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dmarshall@gmail.com",
+      "CustomerID": "6",
+      "City": "Taylorfort",
+      "Name": "Kelly Barnett"
+    },
+    "r": [
+      {
+        "Email": "dmarshall@gmail.com",
+        "CustomerID": "6",
+        "City": "Taylorfort",
+        "Name": "Kelly Barnett"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 3,
+        "OrderID": "97",
+        "OrderDate": "2025-08-22 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 3,
+      "OrderID": "97",
+      "OrderDate": "2025-08-22 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dmarshall@gmail.com",
+      "CustomerID": "6",
+      "City": "Taylorfort",
+      "Name": "Kelly Barnett"
+    },
+    "r": [
+      {
+        "Email": "dmarshall@gmail.com",
+        "CustomerID": "6",
+        "City": "Taylorfort",
+        "Name": "Kelly Barnett"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 1,
+        "OrderID": "99",
+        "OrderDate": "2024-10-18 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 1,
+      "OrderID": "99",
+      "OrderDate": "2024-10-18 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "amartin@hotmail.com",
+      "CustomerID": "7",
+      "City": "Nathanview",
+      "Name": "Joseph Higgins"
+    },
+    "r": [
+      {
+        "Email": "amartin@hotmail.com",
+        "CustomerID": "7",
+        "City": "Nathanview",
+        "Name": "Joseph Higgins"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 2,
+        "OrderID": "33",
+        "OrderDate": "2025-08-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 2,
+      "OrderID": "33",
+      "OrderDate": "2025-08-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "yvonnemason@hart.com",
+      "CustomerID": "8",
+      "City": "Lake Feliciaborough",
+      "Name": "Tracey Reese"
+    },
+    "r": [
+      {
+        "Email": "yvonnemason@hart.com",
+        "CustomerID": "8",
+        "City": "Lake Feliciaborough",
+        "Name": "Tracey Reese"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 4,
+        "OrderID": "32",
+        "OrderDate": "2024-11-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 4,
+      "OrderID": "32",
+      "OrderDate": "2024-11-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "yvonnemason@hart.com",
+      "CustomerID": "8",
+      "City": "Lake Feliciaborough",
+      "Name": "Tracey Reese"
+    },
+    "r": [
+      {
+        "Email": "yvonnemason@hart.com",
+        "CustomerID": "8",
+        "City": "Lake Feliciaborough",
+        "Name": "Tracey Reese"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 1,
+        "OrderID": "39",
+        "OrderDate": "2024-09-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 1,
+      "OrderID": "39",
+      "OrderDate": "2024-09-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "jonesbrittney@gmail.com",
+      "CustomerID": "9",
+      "City": "East Katrinamouth",
+      "Name": "Darrell Osborn Jr."
+    },
+    "r": [
+      {
+        "Email": "jonesbrittney@gmail.com",
+        "CustomerID": "9",
+        "City": "East Katrinamouth",
+        "Name": "Darrell Osborn Jr."
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 4,
+        "OrderID": "70",
+        "OrderDate": "2025-05-31 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 4,
+      "OrderID": "70",
+      "OrderDate": "2025-05-31 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "jonesbrittney@gmail.com",
+      "CustomerID": "9",
+      "City": "East Katrinamouth",
+      "Name": "Darrell Osborn Jr."
+    },
+    "r": [
+      {
+        "Email": "jonesbrittney@gmail.com",
+        "CustomerID": "9",
+        "City": "East Katrinamouth",
+        "Name": "Darrell Osborn Jr."
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 5,
+        "OrderID": "90",
+        "OrderDate": "2025-08-03 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 5,
+      "OrderID": "90",
+      "OrderDate": "2025-08-03 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "darlenecummings@fisher-morris.com",
+      "CustomerID": "11",
+      "City": "Christopherchester",
+      "Name": "Christopher Allen"
+    },
+    "r": [
+      {
+        "Email": "darlenecummings@fisher-morris.com",
+        "CustomerID": "11",
+        "City": "Christopherchester",
+        "Name": "Christopher Allen"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 3,
+        "OrderID": "31",
+        "OrderDate": "2025-03-28 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 3,
+      "OrderID": "31",
+      "OrderDate": "2025-03-28 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "darlenecummings@fisher-morris.com",
+      "CustomerID": "11",
+      "City": "Christopherchester",
+      "Name": "Christopher Allen"
+    },
+    "r": [
+      {
+        "Email": "darlenecummings@fisher-morris.com",
+        "CustomerID": "11",
+        "City": "Christopherchester",
+        "Name": "Christopher Allen"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 5,
+        "OrderID": "40",
+        "OrderDate": "2025-04-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 5,
+      "OrderID": "40",
+      "OrderDate": "2025-04-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "darlenecummings@fisher-morris.com",
+      "CustomerID": "11",
+      "City": "Christopherchester",
+      "Name": "Christopher Allen"
+    },
+    "r": [
+      {
+        "Email": "darlenecummings@fisher-morris.com",
+        "CustomerID": "11",
+        "City": "Christopherchester",
+        "Name": "Christopher Allen"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 4,
+        "OrderID": "71",
+        "OrderDate": "2025-02-25 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 4,
+      "OrderID": "71",
+      "OrderDate": "2025-02-25 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "robert84@hernandez-robinson.com",
+      "CustomerID": "12",
+      "City": "Lake Kathleen",
+      "Name": "Alexis Nichols"
+    },
+    "r": [
+      {
+        "Email": "robert84@hernandez-robinson.com",
+        "CustomerID": "12",
+        "City": "Lake Kathleen",
+        "Name": "Alexis Nichols"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "9",
+        "OrderDate": "2025-05-18 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "9",
+      "OrderDate": "2025-05-18 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "robert84@hernandez-robinson.com",
+      "CustomerID": "12",
+      "City": "Lake Kathleen",
+      "Name": "Alexis Nichols"
+    },
+    "r": [
+      {
+        "Email": "robert84@hernandez-robinson.com",
+        "CustomerID": "12",
+        "City": "Lake Kathleen",
+        "Name": "Alexis Nichols"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 3,
+        "OrderID": "20",
+        "OrderDate": "2024-09-23 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 3,
+      "OrderID": "20",
+      "OrderDate": "2024-09-23 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "robert84@hernandez-robinson.com",
+      "CustomerID": "12",
+      "City": "Lake Kathleen",
+      "Name": "Alexis Nichols"
+    },
+    "r": [
+      {
+        "Email": "robert84@hernandez-robinson.com",
+        "CustomerID": "12",
+        "City": "Lake Kathleen",
+        "Name": "Alexis Nichols"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 5,
+        "OrderID": "66",
+        "OrderDate": "2024-11-25 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 5,
+      "OrderID": "66",
+      "OrderDate": "2024-11-25 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christina49@hotmail.com",
+      "CustomerID": "13",
+      "City": "Kimberlyfurt",
+      "Name": "Dylan Meza"
+    },
+    "r": [
+      {
+        "Email": "christina49@hotmail.com",
+        "CustomerID": "13",
+        "City": "Kimberlyfurt",
+        "Name": "Dylan Meza"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 3,
+        "OrderID": "62",
+        "OrderDate": "2024-09-20 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 3,
+      "OrderID": "62",
+      "OrderDate": "2024-09-20 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christina49@hotmail.com",
+      "CustomerID": "13",
+      "City": "Kimberlyfurt",
+      "Name": "Dylan Meza"
+    },
+    "r": [
+      {
+        "Email": "christina49@hotmail.com",
+        "CustomerID": "13",
+        "City": "Kimberlyfurt",
+        "Name": "Dylan Meza"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 1,
+        "OrderID": "68",
+        "OrderDate": "2025-05-19 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 1,
+      "OrderID": "68",
+      "OrderDate": "2025-05-19 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christina49@hotmail.com",
+      "CustomerID": "13",
+      "City": "Kimberlyfurt",
+      "Name": "Dylan Meza"
+    },
+    "r": [
+      {
+        "Email": "christina49@hotmail.com",
+        "CustomerID": "13",
+        "City": "Kimberlyfurt",
+        "Name": "Dylan Meza"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 4,
+        "OrderID": "81",
+        "OrderDate": "2024-11-22 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 4,
+      "OrderID": "81",
+      "OrderDate": "2024-11-22 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "hmurphy@gmail.com",
+      "CustomerID": "14",
+      "City": "Hernandezstad",
+      "Name": "Tammy Wong"
+    },
+    "r": [
+      {
+        "Email": "hmurphy@gmail.com",
+        "CustomerID": "14",
+        "City": "Hernandezstad",
+        "Name": "Tammy Wong"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 1,
+        "OrderID": "29",
+        "OrderDate": "2025-05-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 1,
+      "OrderID": "29",
+      "OrderDate": "2025-05-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "hmurphy@gmail.com",
+      "CustomerID": "14",
+      "City": "Hernandezstad",
+      "Name": "Tammy Wong"
+    },
+    "r": [
+      {
+        "Email": "hmurphy@gmail.com",
+        "CustomerID": "14",
+        "City": "Hernandezstad",
+        "Name": "Tammy Wong"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 1,
+        "OrderID": "35",
+        "OrderDate": "2025-07-01 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 1,
+      "OrderID": "35",
+      "OrderDate": "2025-07-01 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "ewolfe@gmail.com",
+      "CustomerID": "16",
+      "City": "East Wayne",
+      "Name": "Mrs. Rachel Pineda"
+    },
+    "r": [
+      {
+        "Email": "ewolfe@gmail.com",
+        "CustomerID": "16",
+        "City": "East Wayne",
+        "Name": "Mrs. Rachel Pineda"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "1",
+        "OrderDate": "2024-10-05 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "1",
+      "OrderDate": "2024-10-05 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "ewolfe@gmail.com",
+      "CustomerID": "16",
+      "City": "East Wayne",
+      "Name": "Mrs. Rachel Pineda"
+    },
+    "r": [
+      {
+        "Email": "ewolfe@gmail.com",
+        "CustomerID": "16",
+        "City": "East Wayne",
+        "Name": "Mrs. Rachel Pineda"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 3,
+        "OrderID": "69",
+        "OrderDate": "2024-09-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 3,
+      "OrderID": "69",
+      "OrderDate": "2024-09-09 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "andreasmith@hotmail.com",
+      "CustomerID": "17",
+      "City": "New Katie",
+      "Name": "Brianna Johnson"
+    },
+    "r": [
+      {
+        "Email": "andreasmith@hotmail.com",
+        "CustomerID": "17",
+        "City": "New Katie",
+        "Name": "Brianna Johnson"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 1,
+        "OrderID": "47",
+        "OrderDate": "2025-08-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 1,
+      "OrderID": "47",
+      "OrderDate": "2025-08-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "michele62@gmail.com",
+      "CustomerID": "18",
+      "City": "East Carolinehaven",
+      "Name": "Caitlin Jarvis"
+    },
+    "r": [
+      {
+        "Email": "michele62@gmail.com",
+        "CustomerID": "18",
+        "City": "East Carolinehaven",
+        "Name": "Caitlin Jarvis"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 5,
+        "OrderID": "28",
+        "OrderDate": "2024-09-05 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 5,
+      "OrderID": "28",
+      "OrderDate": "2024-09-05 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "michele62@gmail.com",
+      "CustomerID": "18",
+      "City": "East Carolinehaven",
+      "Name": "Caitlin Jarvis"
+    },
+    "r": [
+      {
+        "Email": "michele62@gmail.com",
+        "CustomerID": "18",
+        "City": "East Carolinehaven",
+        "Name": "Caitlin Jarvis"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 5,
+        "OrderID": "74",
+        "OrderDate": "2025-01-14 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 5,
+      "OrderID": "74",
+      "OrderDate": "2025-01-14 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mary88@jones-parker.com",
+      "CustomerID": "19",
+      "City": "Hoffmantown",
+      "Name": "Alicia Boyd"
+    },
+    "r": [
+      {
+        "Email": "mary88@jones-parker.com",
+        "CustomerID": "19",
+        "City": "Hoffmantown",
+        "Name": "Alicia Boyd"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 4,
+        "OrderID": "8",
+        "OrderDate": "2024-12-31 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 4,
+      "OrderID": "8",
+      "OrderDate": "2024-12-31 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mary88@jones-parker.com",
+      "CustomerID": "19",
+      "City": "Hoffmantown",
+      "Name": "Alicia Boyd"
+    },
+    "r": [
+      {
+        "Email": "mary88@jones-parker.com",
+        "CustomerID": "19",
+        "City": "Hoffmantown",
+        "Name": "Alicia Boyd"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 2,
+        "OrderID": "51",
+        "OrderDate": "2024-10-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 2,
+      "OrderID": "51",
+      "OrderDate": "2024-10-09 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mary88@jones-parker.com",
+      "CustomerID": "19",
+      "City": "Hoffmantown",
+      "Name": "Alicia Boyd"
+    },
+    "r": [
+      {
+        "Email": "mary88@jones-parker.com",
+        "CustomerID": "19",
+        "City": "Hoffmantown",
+        "Name": "Alicia Boyd"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 3,
+        "OrderID": "57",
+        "OrderDate": "2025-07-04 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 3,
+      "OrderID": "57",
+      "OrderDate": "2025-07-04 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mary88@jones-parker.com",
+      "CustomerID": "19",
+      "City": "Hoffmantown",
+      "Name": "Alicia Boyd"
+    },
+    "r": [
+      {
+        "Email": "mary88@jones-parker.com",
+        "CustomerID": "19",
+        "City": "Hoffmantown",
+        "Name": "Alicia Boyd"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 5,
+        "OrderID": "84",
+        "OrderDate": "2024-08-31 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 5,
+      "OrderID": "84",
+      "OrderDate": "2024-08-31 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 2,
+        "OrderID": "22",
+        "OrderDate": "2025-02-20 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 2,
+      "OrderID": "22",
+      "OrderDate": "2025-02-20 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 1,
+        "OrderID": "30",
+        "OrderDate": "2025-05-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 1,
+      "OrderID": "30",
+      "OrderDate": "2025-05-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 5,
+        "OrderID": "41",
+        "OrderDate": "2024-12-27 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 5,
+      "OrderID": "41",
+      "OrderDate": "2024-12-27 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 4,
+        "OrderID": "46",
+        "OrderDate": "2025-01-14 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 4,
+      "OrderID": "46",
+      "OrderDate": "2025-01-14 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "56",
+        "OrderDate": "2025-01-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "56",
+      "OrderDate": "2025-01-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "parkerkenneth@maynard-richmond.com",
+      "CustomerID": "20",
+      "City": "Port Kevinland",
+      "Name": "Mrs. Lisa Mitchell"
+    },
+    "r": [
+      {
+        "Email": "parkerkenneth@maynard-richmond.com",
+        "CustomerID": "20",
+        "City": "Port Kevinland",
+        "Name": "Mrs. Lisa Mitchell"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 1,
+        "OrderID": "100",
+        "OrderDate": "2025-02-13 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 1,
+      "OrderID": "100",
+      "OrderDate": "2025-02-13 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "michaelcarson@gmail.com",
+      "CustomerID": "21",
+      "City": "North Brian",
+      "Name": "Matthew Mueller"
+    },
+    "r": [
+      {
+        "Email": "michaelcarson@gmail.com",
+        "CustomerID": "21",
+        "City": "North Brian",
+        "Name": "Matthew Mueller"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "13",
+        "OrderDate": "2024-09-14 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "13",
+      "OrderDate": "2024-09-14 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "hillhannah@delacruz-yates.org",
+      "CustomerID": "22",
+      "City": "East Amandahaven",
+      "Name": "Carlos Hawkins"
+    },
+    "r": [
+      {
+        "Email": "hillhannah@delacruz-yates.org",
+        "CustomerID": "22",
+        "City": "East Amandahaven",
+        "Name": "Carlos Hawkins"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 1,
+        "OrderID": "50",
+        "OrderDate": "2024-09-28 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 1,
+      "OrderID": "50",
+      "OrderDate": "2024-09-28 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mooreheather@adams-hamilton.com",
+      "CustomerID": "23",
+      "City": "Alvarezbury",
+      "Name": "Richard Garza"
+    },
+    "r": [
+      {
+        "Email": "mooreheather@adams-hamilton.com",
+        "CustomerID": "23",
+        "City": "Alvarezbury",
+        "Name": "Richard Garza"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 1,
+        "OrderID": "49",
+        "OrderDate": "2025-08-19 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 1,
+      "OrderID": "49",
+      "OrderDate": "2025-08-19 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mooreheather@adams-hamilton.com",
+      "CustomerID": "23",
+      "City": "Alvarezbury",
+      "Name": "Richard Garza"
+    },
+    "r": [
+      {
+        "Email": "mooreheather@adams-hamilton.com",
+        "CustomerID": "23",
+        "City": "Alvarezbury",
+        "Name": "Richard Garza"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "82",
+        "OrderDate": "2025-06-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "82",
+      "OrderDate": "2025-06-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dduffy@yahoo.com",
+      "CustomerID": "24",
+      "City": "Newtonborough",
+      "Name": "Sydney Obrien"
+    },
+    "r": [
+      {
+        "Email": "dduffy@yahoo.com",
+        "CustomerID": "24",
+        "City": "Newtonborough",
+        "Name": "Sydney Obrien"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 2,
+        "OrderID": "21",
+        "OrderDate": "2025-07-04 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 2,
+      "OrderID": "21",
+      "OrderDate": "2025-07-04 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dduffy@yahoo.com",
+      "CustomerID": "24",
+      "City": "Newtonborough",
+      "Name": "Sydney Obrien"
+    },
+    "r": [
+      {
+        "Email": "dduffy@yahoo.com",
+        "CustomerID": "24",
+        "City": "Newtonborough",
+        "Name": "Sydney Obrien"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 3,
+        "OrderID": "88",
+        "OrderDate": "2025-04-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 3,
+      "OrderID": "88",
+      "OrderDate": "2025-04-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopherbaker@diaz-peters.info",
+      "CustomerID": "25",
+      "City": "East Alejandrabury",
+      "Name": "Dylan Howell"
+    },
+    "r": [
+      {
+        "Email": "christopherbaker@diaz-peters.info",
+        "CustomerID": "25",
+        "City": "East Alejandrabury",
+        "Name": "Dylan Howell"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 1,
+        "OrderID": "12",
+        "OrderDate": "2025-05-30 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 1,
+      "OrderID": "12",
+      "OrderDate": "2025-05-30 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopherbaker@diaz-peters.info",
+      "CustomerID": "25",
+      "City": "East Alejandrabury",
+      "Name": "Dylan Howell"
+    },
+    "r": [
+      {
+        "Email": "christopherbaker@diaz-peters.info",
+        "CustomerID": "25",
+        "City": "East Alejandrabury",
+        "Name": "Dylan Howell"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "14",
+        "OrderDate": "2025-03-20 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "14",
+      "OrderDate": "2025-03-20 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopherbaker@diaz-peters.info",
+      "CustomerID": "25",
+      "City": "East Alejandrabury",
+      "Name": "Dylan Howell"
+    },
+    "r": [
+      {
+        "Email": "christopherbaker@diaz-peters.info",
+        "CustomerID": "25",
+        "City": "East Alejandrabury",
+        "Name": "Dylan Howell"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 2,
+        "OrderID": "53",
+        "OrderDate": "2024-12-28 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 2,
+      "OrderID": "53",
+      "OrderDate": "2024-12-28 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopherbaker@diaz-peters.info",
+      "CustomerID": "25",
+      "City": "East Alejandrabury",
+      "Name": "Dylan Howell"
+    },
+    "r": [
+      {
+        "Email": "christopherbaker@diaz-peters.info",
+        "CustomerID": "25",
+        "City": "East Alejandrabury",
+        "Name": "Dylan Howell"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "65",
+        "OrderDate": "2025-07-15 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "65",
+      "OrderDate": "2025-07-15 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "hernandezkimberly@yahoo.com",
+      "CustomerID": "26",
+      "City": "New Scott",
+      "Name": "Eric Davis"
+    },
+    "r": [
+      {
+        "Email": "hernandezkimberly@yahoo.com",
+        "CustomerID": "26",
+        "City": "New Scott",
+        "Name": "Eric Davis"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "27",
+        "OrderDate": "2024-12-20 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "27",
+      "OrderDate": "2024-12-20 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "hernandezkimberly@yahoo.com",
+      "CustomerID": "26",
+      "City": "New Scott",
+      "Name": "Eric Davis"
+    },
+    "r": [
+      {
+        "Email": "hernandezkimberly@yahoo.com",
+        "CustomerID": "26",
+        "City": "New Scott",
+        "Name": "Eric Davis"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 3,
+        "OrderID": "80",
+        "OrderDate": "2025-02-18 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 3,
+      "OrderID": "80",
+      "OrderDate": "2025-02-18 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "swansonleah@gmail.com",
+      "CustomerID": "27",
+      "City": "Port Elizabethberg",
+      "Name": "Susan Lowe"
+    },
+    "r": [
+      {
+        "Email": "swansonleah@gmail.com",
+        "CustomerID": "27",
+        "City": "Port Elizabethberg",
+        "Name": "Susan Lowe"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 3,
+        "OrderID": "16",
+        "OrderDate": "2025-05-07 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 3,
+      "OrderID": "16",
+      "OrderDate": "2025-05-07 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "swansonleah@gmail.com",
+      "CustomerID": "27",
+      "City": "Port Elizabethberg",
+      "Name": "Susan Lowe"
+    },
+    "r": [
+      {
+        "Email": "swansonleah@gmail.com",
+        "CustomerID": "27",
+        "City": "Port Elizabethberg",
+        "Name": "Susan Lowe"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 3,
+        "OrderID": "73",
+        "OrderDate": "2024-12-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 3,
+      "OrderID": "73",
+      "OrderDate": "2024-12-09 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopher54@newman.com",
+      "CustomerID": "28",
+      "City": "Sellersville",
+      "Name": "Michael Cole"
+    },
+    "r": [
+      {
+        "Email": "christopher54@newman.com",
+        "CustomerID": "28",
+        "City": "Sellersville",
+        "Name": "Michael Cole"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 4,
+        "OrderID": "75",
+        "OrderDate": "2025-06-22 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 4,
+      "OrderID": "75",
+      "OrderDate": "2025-06-22 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "christopher54@newman.com",
+      "CustomerID": "28",
+      "City": "Sellersville",
+      "Name": "Michael Cole"
+    },
+    "r": [
+      {
+        "Email": "christopher54@newman.com",
+        "CustomerID": "28",
+        "City": "Sellersville",
+        "Name": "Michael Cole"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 3,
+        "OrderID": "79",
+        "OrderDate": "2024-10-21 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 3,
+      "OrderID": "79",
+      "OrderDate": "2024-10-21 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "sarah53@hobbs.net",
+      "CustomerID": "29",
+      "City": "Anthonyton",
+      "Name": "Anna Berger"
+    },
+    "r": [
+      {
+        "Email": "sarah53@hobbs.net",
+        "CustomerID": "29",
+        "City": "Anthonyton",
+        "Name": "Anna Berger"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 5,
+        "OrderID": "24",
+        "OrderDate": "2024-11-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 5,
+      "OrderID": "24",
+      "OrderDate": "2024-11-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "sarah53@hobbs.net",
+      "CustomerID": "29",
+      "City": "Anthonyton",
+      "Name": "Anna Berger"
+    },
+    "r": [
+      {
+        "Email": "sarah53@hobbs.net",
+        "CustomerID": "29",
+        "City": "Anthonyton",
+        "Name": "Anna Berger"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 4,
+        "OrderID": "91",
+        "OrderDate": "2025-01-27 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 4,
+      "OrderID": "91",
+      "OrderDate": "2025-01-27 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "emilypage@gmail.com",
+      "CustomerID": "30",
+      "City": "South Keith",
+      "Name": "Rachel Brown"
+    },
+    "r": [
+      {
+        "Email": "emilypage@gmail.com",
+        "CustomerID": "30",
+        "City": "South Keith",
+        "Name": "Rachel Brown"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 3,
+        "OrderID": "78",
+        "OrderDate": "2025-03-14 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 3,
+      "OrderID": "78",
+      "OrderDate": "2025-03-14 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dixonshane@thomas.com",
+      "CustomerID": "31",
+      "City": "South Carriestad",
+      "Name": "Denise Butler"
+    },
+    "r": [
+      {
+        "Email": "dixonshane@thomas.com",
+        "CustomerID": "31",
+        "City": "South Carriestad",
+        "Name": "Denise Butler"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "60",
+        "OrderDate": "2025-07-04 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "60",
+      "OrderDate": "2025-07-04 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dixonshane@thomas.com",
+      "CustomerID": "31",
+      "City": "South Carriestad",
+      "Name": "Denise Butler"
+    },
+    "r": [
+      {
+        "Email": "dixonshane@thomas.com",
+        "CustomerID": "31",
+        "City": "South Carriestad",
+        "Name": "Denise Butler"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 1,
+        "OrderID": "72",
+        "OrderDate": "2025-08-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 1,
+      "OrderID": "72",
+      "OrderDate": "2025-08-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dixonshane@thomas.com",
+      "CustomerID": "31",
+      "City": "South Carriestad",
+      "Name": "Denise Butler"
+    },
+    "r": [
+      {
+        "Email": "dixonshane@thomas.com",
+        "CustomerID": "31",
+        "City": "South Carriestad",
+        "Name": "Denise Butler"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 2,
+        "OrderID": "86",
+        "OrderDate": "2025-03-30 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 2,
+      "OrderID": "86",
+      "OrderDate": "2025-03-30 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "heidiyates@gmail.com",
+      "CustomerID": "32",
+      "City": "Andrewhaven",
+      "Name": "Rebecca King"
+    },
+    "r": [
+      {
+        "Email": "heidiyates@gmail.com",
+        "CustomerID": "32",
+        "City": "Andrewhaven",
+        "Name": "Rebecca King"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 3,
+        "OrderID": "11",
+        "OrderDate": "2024-10-15 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 3,
+      "OrderID": "11",
+      "OrderDate": "2024-10-15 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "heidiyates@gmail.com",
+      "CustomerID": "32",
+      "City": "Andrewhaven",
+      "Name": "Rebecca King"
+    },
+    "r": [
+      {
+        "Email": "heidiyates@gmail.com",
+        "CustomerID": "32",
+        "City": "Andrewhaven",
+        "Name": "Rebecca King"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 1,
+        "OrderID": "19",
+        "OrderDate": "2025-07-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 1,
+      "OrderID": "19",
+      "OrderDate": "2025-07-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "heidiyates@gmail.com",
+      "CustomerID": "32",
+      "City": "Andrewhaven",
+      "Name": "Rebecca King"
+    },
+    "r": [
+      {
+        "Email": "heidiyates@gmail.com",
+        "CustomerID": "32",
+        "City": "Andrewhaven",
+        "Name": "Rebecca King"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 1,
+        "OrderID": "67",
+        "OrderDate": "2024-09-01 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 1,
+      "OrderID": "67",
+      "OrderDate": "2024-09-01 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "wilsonnicholas@decker.com",
+      "CustomerID": "33",
+      "City": "Greenmouth",
+      "Name": "Paul Rodgers"
+    },
+    "r": [
+      {
+        "Email": "wilsonnicholas@decker.com",
+        "CustomerID": "33",
+        "City": "Greenmouth",
+        "Name": "Paul Rodgers"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 3,
+        "OrderID": "10",
+        "OrderDate": "2024-12-18 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 3,
+      "OrderID": "10",
+      "OrderDate": "2024-12-18 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "zblack@yahoo.com",
+      "CustomerID": "35",
+      "City": "North Renee",
+      "Name": "Jessica Ruiz"
+    },
+    "r": [
+      {
+        "Email": "zblack@yahoo.com",
+        "CustomerID": "35",
+        "City": "North Renee",
+        "Name": "Jessica Ruiz"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 1,
+        "OrderID": "5",
+        "OrderDate": "2025-04-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 1,
+      "OrderID": "5",
+      "OrderDate": "2025-04-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "zblack@yahoo.com",
+      "CustomerID": "35",
+      "City": "North Renee",
+      "Name": "Jessica Ruiz"
+    },
+    "r": [
+      {
+        "Email": "zblack@yahoo.com",
+        "CustomerID": "35",
+        "City": "North Renee",
+        "Name": "Jessica Ruiz"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 1,
+        "OrderID": "63",
+        "OrderDate": "2025-06-23 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 1,
+      "OrderID": "63",
+      "OrderDate": "2025-06-23 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "zblack@yahoo.com",
+      "CustomerID": "35",
+      "City": "North Renee",
+      "Name": "Jessica Ruiz"
+    },
+    "r": [
+      {
+        "Email": "zblack@yahoo.com",
+        "CustomerID": "35",
+        "City": "North Renee",
+        "Name": "Jessica Ruiz"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 1,
+        "OrderID": "64",
+        "OrderDate": "2025-03-05 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 1,
+      "OrderID": "64",
+      "OrderDate": "2025-03-05 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "zblack@yahoo.com",
+      "CustomerID": "35",
+      "City": "North Renee",
+      "Name": "Jessica Ruiz"
+    },
+    "r": [
+      {
+        "Email": "zblack@yahoo.com",
+        "CustomerID": "35",
+        "City": "North Renee",
+        "Name": "Jessica Ruiz"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 3,
+        "OrderID": "76",
+        "OrderDate": "2024-10-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 3,
+      "OrderID": "76",
+      "OrderDate": "2024-10-09 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "zblack@yahoo.com",
+      "CustomerID": "35",
+      "City": "North Renee",
+      "Name": "Jessica Ruiz"
+    },
+    "r": [
+      {
+        "Email": "zblack@yahoo.com",
+        "CustomerID": "35",
+        "City": "North Renee",
+        "Name": "Jessica Ruiz"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 4,
+        "OrderID": "85",
+        "OrderDate": "2025-02-05 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 4,
+      "OrderID": "85",
+      "OrderDate": "2025-02-05 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "perezangela@yahoo.com",
+      "CustomerID": "36",
+      "City": "Kaitlynbury",
+      "Name": "John Rosario"
+    },
+    "r": [
+      {
+        "Email": "perezangela@yahoo.com",
+        "CustomerID": "36",
+        "City": "Kaitlynbury",
+        "Name": "John Rosario"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 2,
+        "OrderID": "94",
+        "OrderDate": "2025-06-12 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 2,
+      "OrderID": "94",
+      "OrderDate": "2025-06-12 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "leemelissa@hotmail.com",
+      "CustomerID": "37",
+      "City": "Lake Melissa",
+      "Name": "Lindsay Perry"
+    },
+    "r": [
+      {
+        "Email": "leemelissa@hotmail.com",
+        "CustomerID": "37",
+        "City": "Lake Melissa",
+        "Name": "Lindsay Perry"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 2,
+        "OrderID": "6",
+        "OrderDate": "2025-04-04 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 2,
+      "OrderID": "6",
+      "OrderDate": "2025-04-04 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "leemelissa@hotmail.com",
+      "CustomerID": "37",
+      "City": "Lake Melissa",
+      "Name": "Lindsay Perry"
+    },
+    "r": [
+      {
+        "Email": "leemelissa@hotmail.com",
+        "CustomerID": "37",
+        "City": "Lake Melissa",
+        "Name": "Lindsay Perry"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 5,
+        "OrderID": "18",
+        "OrderDate": "2025-07-07 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 5,
+      "OrderID": "18",
+      "OrderDate": "2025-07-07 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mitchelllopez@carr.com",
+      "CustomerID": "39",
+      "City": "West Juanbury",
+      "Name": "Amber Swanson"
+    },
+    "r": [
+      {
+        "Email": "mitchelllopez@carr.com",
+        "CustomerID": "39",
+        "City": "West Juanbury",
+        "Name": "Amber Swanson"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 2,
+        "OrderID": "45",
+        "OrderDate": "2025-07-06 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 2,
+      "OrderID": "45",
+      "OrderDate": "2025-07-06 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "mitchelllopez@carr.com",
+      "CustomerID": "39",
+      "City": "West Juanbury",
+      "Name": "Amber Swanson"
+    },
+    "r": [
+      {
+        "Email": "mitchelllopez@carr.com",
+        "CustomerID": "39",
+        "City": "West Juanbury",
+        "Name": "Amber Swanson"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "52",
+        "OrderDate": "2025-08-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "52",
+      "OrderDate": "2025-08-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "seanmcneil@larsen.com",
+      "CustomerID": "40",
+      "City": "Hutchinsontown",
+      "Name": "Brian Smith"
+    },
+    "r": [
+      {
+        "Email": "seanmcneil@larsen.com",
+        "CustomerID": "40",
+        "City": "Hutchinsontown",
+        "Name": "Brian Smith"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 4,
+        "OrderID": "37",
+        "OrderDate": "2025-01-31 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 4,
+      "OrderID": "37",
+      "OrderDate": "2025-01-31 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "seanmcneil@larsen.com",
+      "CustomerID": "40",
+      "City": "Hutchinsontown",
+      "Name": "Brian Smith"
+    },
+    "r": [
+      {
+        "Email": "seanmcneil@larsen.com",
+        "CustomerID": "40",
+        "City": "Hutchinsontown",
+        "Name": "Brian Smith"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 5,
+        "OrderID": "38",
+        "OrderDate": "2024-10-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 5,
+      "OrderID": "38",
+      "OrderDate": "2024-10-09 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "seanmcneil@larsen.com",
+      "CustomerID": "40",
+      "City": "Hutchinsontown",
+      "Name": "Brian Smith"
+    },
+    "r": [
+      {
+        "Email": "seanmcneil@larsen.com",
+        "CustomerID": "40",
+        "City": "Hutchinsontown",
+        "Name": "Brian Smith"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 5,
+        "OrderID": "98",
+        "OrderDate": "2024-12-02 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 5,
+      "OrderID": "98",
+      "OrderDate": "2024-12-02 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "rollinslaurie@gmail.com",
+      "CustomerID": "41",
+      "City": "Katherinefurt",
+      "Name": "Ethan Lawson"
+    },
+    "r": [
+      {
+        "Email": "rollinslaurie@gmail.com",
+        "CustomerID": "41",
+        "City": "Katherinefurt",
+        "Name": "Ethan Lawson"
+      },
+      "PLACED",
+      {
+        "Product": "Tablet",
+        "Quantity": 2,
+        "OrderID": "4",
+        "OrderDate": "2025-07-28 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Tablet",
+      "Quantity": 2,
+      "OrderID": "4",
+      "OrderDate": "2025-07-28 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "rollinslaurie@gmail.com",
+      "CustomerID": "41",
+      "City": "Katherinefurt",
+      "Name": "Ethan Lawson"
+    },
+    "r": [
+      {
+        "Email": "rollinslaurie@gmail.com",
+        "CustomerID": "41",
+        "City": "Katherinefurt",
+        "Name": "Ethan Lawson"
+      },
+      "PLACED",
+      {
+        "Product": "Monitor",
+        "Quantity": 1,
+        "OrderID": "17",
+        "OrderDate": "2024-12-13 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Monitor",
+      "Quantity": 1,
+      "OrderID": "17",
+      "OrderDate": "2024-12-13 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "rollinslaurie@gmail.com",
+      "CustomerID": "41",
+      "City": "Katherinefurt",
+      "Name": "Ethan Lawson"
+    },
+    "r": [
+      {
+        "Email": "rollinslaurie@gmail.com",
+        "CustomerID": "41",
+        "City": "Katherinefurt",
+        "Name": "Ethan Lawson"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 4,
+        "OrderID": "96",
+        "OrderDate": "2024-09-26 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 4,
+      "OrderID": "96",
+      "OrderDate": "2024-09-26 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "rebecca33@baker-vega.com",
+      "CustomerID": "42",
+      "City": "East Michaelton",
+      "Name": "Mark Olson"
+    },
+    "r": [
+      {
+        "Email": "rebecca33@baker-vega.com",
+        "CustomerID": "42",
+        "City": "East Michaelton",
+        "Name": "Mark Olson"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 2,
+        "OrderID": "83",
+        "OrderDate": "2024-09-26 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 2,
+      "OrderID": "83",
+      "OrderDate": "2024-09-26 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "ana09@yahoo.com",
+      "CustomerID": "44",
+      "City": "East Aaron",
+      "Name": "Larry Bradley"
+    },
+    "r": [
+      {
+        "Email": "ana09@yahoo.com",
+        "CustomerID": "44",
+        "City": "East Aaron",
+        "Name": "Larry Bradley"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 2,
+        "OrderID": "3",
+        "OrderDate": "2025-07-22 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 2,
+      "OrderID": "3",
+      "OrderDate": "2025-07-22 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "ana09@yahoo.com",
+      "CustomerID": "44",
+      "City": "East Aaron",
+      "Name": "Larry Bradley"
+    },
+    "r": [
+      {
+        "Email": "ana09@yahoo.com",
+        "CustomerID": "44",
+        "City": "East Aaron",
+        "Name": "Larry Bradley"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 5,
+        "OrderID": "7",
+        "OrderDate": "2024-10-31 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 5,
+      "OrderID": "7",
+      "OrderDate": "2024-10-31 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "ana09@yahoo.com",
+      "CustomerID": "44",
+      "City": "East Aaron",
+      "Name": "Larry Bradley"
+    },
+    "r": [
+      {
+        "Email": "ana09@yahoo.com",
+        "CustomerID": "44",
+        "City": "East Aaron",
+        "Name": "Larry Bradley"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 3,
+        "OrderID": "58",
+        "OrderDate": "2025-04-10 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 3,
+      "OrderID": "58",
+      "OrderDate": "2025-04-10 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "tricia71@yahoo.com",
+      "CustomerID": "45",
+      "City": "Luisshire",
+      "Name": "Danielle Clark"
+    },
+    "r": [
+      {
+        "Email": "tricia71@yahoo.com",
+        "CustomerID": "45",
+        "City": "Luisshire",
+        "Name": "Danielle Clark"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 4,
+        "OrderID": "34",
+        "OrderDate": "2025-01-19 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 4,
+      "OrderID": "34",
+      "OrderDate": "2025-01-19 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dperez@hotmail.com",
+      "CustomerID": "46",
+      "City": "Chelseaport",
+      "Name": "Julia Walker"
+    },
+    "r": [
+      {
+        "Email": "dperez@hotmail.com",
+        "CustomerID": "46",
+        "City": "Chelseaport",
+        "Name": "Julia Walker"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 1,
+        "OrderID": "43",
+        "OrderDate": "2025-06-25 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 1,
+      "OrderID": "43",
+      "OrderDate": "2025-06-25 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "dperez@hotmail.com",
+      "CustomerID": "46",
+      "City": "Chelseaport",
+      "Name": "Julia Walker"
+    },
+    "r": [
+      {
+        "Email": "dperez@hotmail.com",
+        "CustomerID": "46",
+        "City": "Chelseaport",
+        "Name": "Julia Walker"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 4,
+        "OrderID": "61",
+        "OrderDate": "2025-05-11 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 4,
+      "OrderID": "61",
+      "OrderDate": "2025-05-11 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "brosales@clark.com",
+      "CustomerID": "47",
+      "City": "West Rhondaview",
+      "Name": "Willie Moore"
+    },
+    "r": [
+      {
+        "Email": "brosales@clark.com",
+        "CustomerID": "47",
+        "City": "West Rhondaview",
+        "Name": "Willie Moore"
+      },
+      "PLACED",
+      {
+        "Product": "Phone",
+        "Quantity": 4,
+        "OrderID": "2",
+        "OrderDate": "2025-01-12 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Phone",
+      "Quantity": 4,
+      "OrderID": "2",
+      "OrderDate": "2025-01-12 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "brosales@clark.com",
+      "CustomerID": "47",
+      "City": "West Rhondaview",
+      "Name": "Willie Moore"
+    },
+    "r": [
+      {
+        "Email": "brosales@clark.com",
+        "CustomerID": "47",
+        "City": "West Rhondaview",
+        "Name": "Willie Moore"
+      },
+      "PLACED",
+      {
+        "Product": "Mouse",
+        "Quantity": 1,
+        "OrderID": "54",
+        "OrderDate": "2024-11-28 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Mouse",
+      "Quantity": 1,
+      "OrderID": "54",
+      "OrderDate": "2024-11-28 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "jortega@hotmail.com",
+      "CustomerID": "48",
+      "City": "New Diamondtown",
+      "Name": "Lisa Dixon"
+    },
+    "r": [
+      {
+        "Email": "jortega@hotmail.com",
+        "CustomerID": "48",
+        "City": "New Diamondtown",
+        "Name": "Lisa Dixon"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 2,
+        "OrderID": "42",
+        "OrderDate": "2025-07-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 2,
+      "OrderID": "42",
+      "OrderDate": "2025-07-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "thomas25@gmail.com",
+      "CustomerID": "49",
+      "City": "New Tracytown",
+      "Name": "Sandra May"
+    },
+    "r": [
+      {
+        "Email": "thomas25@gmail.com",
+        "CustomerID": "49",
+        "City": "New Tracytown",
+        "Name": "Sandra May"
+      },
+      "PLACED",
+      {
+        "Product": "Headphones",
+        "Quantity": 2,
+        "OrderID": "15",
+        "OrderDate": "2024-12-16 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Headphones",
+      "Quantity": 2,
+      "OrderID": "15",
+      "OrderDate": "2024-12-16 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "thomas25@gmail.com",
+      "CustomerID": "49",
+      "City": "New Tracytown",
+      "Name": "Sandra May"
+    },
+    "r": [
+      {
+        "Email": "thomas25@gmail.com",
+        "CustomerID": "49",
+        "City": "New Tracytown",
+        "Name": "Sandra May"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 2,
+        "OrderID": "48",
+        "OrderDate": "2025-05-15 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 2,
+      "OrderID": "48",
+      "OrderDate": "2025-05-15 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "thomas25@gmail.com",
+      "CustomerID": "49",
+      "City": "New Tracytown",
+      "Name": "Sandra May"
+    },
+    "r": [
+      {
+        "Email": "thomas25@gmail.com",
+        "CustomerID": "49",
+        "City": "New Tracytown",
+        "Name": "Sandra May"
+      },
+      "PLACED",
+      {
+        "Product": "Laptop",
+        "Quantity": 2,
+        "OrderID": "95",
+        "OrderDate": "2024-10-13 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Laptop",
+      "Quantity": 2,
+      "OrderID": "95",
+      "OrderDate": "2024-10-13 00:00:00"
+    }
+  },
+  {
+    "c": {
+      "Email": "cody09@king-clark.com",
+      "CustomerID": "50",
+      "City": "South Lance",
+      "Name": "Linda Cruz"
+    },
+    "r": [
+      {
+        "Email": "cody09@king-clark.com",
+        "CustomerID": "50",
+        "City": "South Lance",
+        "Name": "Linda Cruz"
+      },
+      "PLACED",
+      {
+        "Product": "Keyboard",
+        "Quantity": 2,
+        "OrderID": "25",
+        "OrderDate": "2025-06-09 00:00:00"
+      }
+    ],
+    "o": {
+      "Product": "Keyboard",
+      "Quantity": 2,
+      "OrderID": "25",
+      "OrderDate": "2025-06-09 00:00:00"
+    }
+  }
+]

@@ -71,7 +71,16 @@ class PatternAnalyzer:
             }
             
             outliers[col] = col_outliers
-        
+
+            # [Debug] output for detected outliers
+            print(f"[Outliers Detected] Column: {col} | "
+                  f"Z-Score Outliers: {col_outliers['z_score']['count']} "
+                  f"({col_outliers['z_score']['percentage']:.2f}%), "
+                  f"IQR Outliers: {col_outliers['iqr']['count']} "
+                  f"({col_outliers['iqr']['percentage']:.2f}%), "
+                  f"Modified Z Outliers: {col_outliers['modified_z']['count']} "
+                  f"({col_outliers['modified_z']['percentage']:.2f}%)")
+            
         return outliers
     
     def _detect_patterns(self, df):
@@ -308,6 +317,10 @@ class PatternAnalyzer:
             'total_cells': total_cells
         }
         
+        # [Debug] output for data quality summary
+        print(f"[Data Quality] Completeness: {quality['completeness']['score']:.2f}% "
+              f"({quality['completeness']['missing_cells']} missing out of {quality['completeness']['total_cells']})")
+        
         # Consistency checks
         quality['consistency'] = {}
         
@@ -317,6 +330,10 @@ class PatternAnalyzer:
             'count': duplicate_rows,
             'percentage': duplicate_rows / len(df) * 100
         }
+        
+        # [Debug] output for duplicate rows
+        print(f"[Data Quality] Duplicate Rows: {duplicate_rows} "
+              f"({quality['consistency']['duplicate_rows']['percentage']:.2f}%)")
         
         # Check for columns with single value (zero variance)
         zero_variance_cols = []

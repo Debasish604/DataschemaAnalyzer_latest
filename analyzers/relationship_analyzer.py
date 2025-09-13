@@ -36,6 +36,14 @@ class RelationshipAnalyzer:
                         'score': key_score['score']
                     })
             
+                    # [Debug] output for potential keys
+                    print(f"[Potential Key] Table: {table_name}, Column: {col}, "
+                                f"Type: {df[col].dtype}, "
+                                f"Uniqueness: {key_score['uniqueness']:.2f}, "
+                                f"Completeness: {key_score['completeness']:.2f}, "
+                                f"Score: {key_score['score']:.2f}, "
+                                f"KeyType: {key_score['key_type']}")
+            
             # Sort by score (descending)
             keys.sort(key=lambda x: x['score'], reverse=True)
             potential_keys[table_name] = keys
@@ -143,6 +151,12 @@ class RelationshipAnalyzer:
                     if relationship['strength'] > 0.4:  # Lower threshold for renamed columns
                         relationship['is_renamed'] = True
                         relationships.append(relationship)
+                        
+                        # [Debug] output for detected relationships
+                        print(f"[Detected Relationship] {table1}.{col} ↔ {table2}.{col} | "
+                          f"Type: {relationship['relationship_type']}, "
+                          f"Strength: {relationship['strength']:.2f}, "
+                          f"CommonValues: {relationship['values_in_common']}")
         
         return relationships
     
@@ -391,6 +405,12 @@ class RelationshipAnalyzer:
             }
             
             join_suggestions.append(join_suggestion)
+            
+            # [Debug] output for join suggestions
+            print(f"[Recommended Join] {table1} ↔ {table2} on '{column}' | "
+                  f"JoinType: {join_type['type']}, "
+                  f"Confidence: {join_type['confidence']:.2f}, "
+                  f"Reason: {join_type['reasoning']}")
         
         return join_suggestions
     

@@ -1,0 +1,30 @@
+
+DATA ANALYSIS REPORT
+==================================================
+
+Session: dominos_chat_20250829_120204
+Generated: 2025-08-29 12:02:04
+
+
+SUMMARY
+--------------------
+Total Files: 1
+Total Rows: 8977
+Total Columns: 7
+Data Quality Score: 96.6%
+
+
+DATA TYPE ANALYSIS
+{'-' * 30}
+
+File: hospital_admissions.csv
+Column               Type                 Confidence   Unique   Missing 
+----------------------------------------------------------------------
+country              categorical          0.90         29       0       
+indicator            categorical          0.90         4        0       
+date                 date                 1.00         262      867     
+year_week            categorical          0.90         39       0       
+value                float                1.00         2506     22      
+source               categorical          0.90         9        262     
+url                  url                  0.99         338      961     
+
